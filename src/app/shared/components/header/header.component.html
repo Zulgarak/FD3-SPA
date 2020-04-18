@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+  <!--<mat-toolbar-row class="container">-->
+
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span> APP LOGO </span>
+
+    <div class="header-nav-container">
+      <div class="header-nav" *appBreakpoinObserver="1023">
+        <button mat-button [matMenuTriggerFor]="menu">Транспорт</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Автомобили</button>
+          <button mat-menu-item>Мотоциклы</button>
+        </mat-menu>
+        <button mat-button>Шины</button>
+        <button mat-button>Запчасти</button>
+        <button mat-button>Автоности</button>
+        <button mat-button>Знания</button>
+      </div>
+
+
+
+
+      <ul class="header-nav-user" *ngIf="getActive(); else elseBlock">
+        <li>
+          <button mat-icon-button>
+            <mat-icon>settings</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-icon-button>
+            <mat-icon>help_outline</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-button [matMenuTriggerFor]="logout">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #logout="matMenu">
+            <button mat-menu-item (click)="toggleActive()">
+              <mat-icon>exit_to_app</mat-icon>
+              Выйти
+            </button>
+          </mat-menu>
+
+        </li>
+      </ul>
+      <ng-template #elseBlock>
+        <ul class="header-nav-user" >
+          <li>
+            <button mat-button>
+              Подать объявление
+            </button>
+          </li>
+          <li>
+            <button mat-button (click)="toggleActive()">
+              Войти
+            </button>
+          </li>
+        </ul>
+
+
+      </ng-template>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
