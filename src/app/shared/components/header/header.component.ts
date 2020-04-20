@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserActiveService} from '../../services/user-active.service';
+import {ToggleSidebarService} from '../../services/toggle-sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,9 @@ import {UserActiveService} from '../../services/user-active.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() toggleSidebarEvent: EventEmitter<any> = new EventEmitter();
 
-  constructor(private userActiveService: UserActiveService) { }
+  constructor(private userActiveService: UserActiveService,
+              private toggleSidebarService: ToggleSidebarService) { }
 
   ngOnInit(): void {}
   //с сервисами ещё попрактиковаться
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
 
   toggleSidebar() {
-    this.toggleSidebarEvent.emit();
+    this.toggleSidebarService.sideBarToggle();
     // setTimeout(()=> {
     //   window.dispatchEvent(
     //     new Event('resize')

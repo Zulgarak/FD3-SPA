@@ -1,14 +1,15 @@
-<app-header (toggleSidebarEvent)="sideBarToggle($event)"></app-header>
+<app-header></app-header>
 
 <mat-drawer-container>
-  <mat-drawer mode="push" [opened]="sideBarOpen">
+  <mat-drawer mode="push" [opened]="getStateSidebar()">
     <app-sidebar></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
 
     <!--<router-outlet></router-outlet>-->
-    <app-news-list></app-news-list>
-    <app-footer></app-footer>
+    <!--<app-news-list></app-news-list>-->
+    <app-authorization></app-authorization>
+    <!--<app-footer></app-footer>-->
 
 
   </mat-drawer-content>

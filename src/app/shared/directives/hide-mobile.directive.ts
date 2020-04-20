@@ -8,13 +8,11 @@ import {Directive, ElementRef, HostListener, Input, OnInit, Renderer2, TemplateR
 @Directive({
   selector: '[appHideMobile]'
 })
-export class HideMobileDirective implements OnInit{
 
-
-  @HostListener('mouseenter') onClick(event: MouseEvent){
-    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue')}
-
-
+export class HideMobileDirective implements OnInit {
+  @HostListener('mouseenter') onClick(event: MouseEvent) {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue')
+  }
 
   constructor(
     private elementRef: ElementRef<any>,

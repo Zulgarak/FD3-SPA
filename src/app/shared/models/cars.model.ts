@@ -8,7 +8,6 @@ export interface Cars {
   bodyType: string;
   driveType: string;
   transmission: string;
-  equipment?: string;
   engineType: string;
   engineCapacity: number;
   condition: string;
@@ -17,4 +16,5 @@ export interface Cars {
   price: number;
   description: string;
   images: string[];
+  equipment?: string;
 }

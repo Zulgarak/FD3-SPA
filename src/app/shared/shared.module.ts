@@ -11,7 +11,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {HideMobileDirective} from './directives/hide-mobile.directive';
-import { BreakpoinObserverDirective } from './directives/breakpoin-observer.directive';
+import { BreakpointObserverDirective } from './directives/breakpoint-observer.directive';
 
 
 
@@ -21,7 +21,7 @@ import { BreakpoinObserverDirective } from './directives/breakpoin-observer.dire
     FooterComponent,
     SidebarComponent,
     HideMobileDirective,
-    BreakpoinObserverDirective,
+    BreakpointObserverDirective,
   ],
   imports: [
     CommonModule,
@@ -38,7 +38,7 @@ import { BreakpoinObserverDirective } from './directives/breakpoin-observer.dire
     FooterComponent,
     SidebarComponent,
     HideMobileDirective,
-    BreakpoinObserverDirective,
+    BreakpointObserverDirective,
   ],
 })
 export class SharedModule { }

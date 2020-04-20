@@ -13,6 +13,9 @@ import { CarsDetailComponent } from './cars/cars-detail/cars-detail.component';
 import {SharedModule} from './shared/shared.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { DefaultComponent } from './layouts/default/default.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -25,13 +28,16 @@ import { DefaultComponent } from './layouts/default/default.component';
     CarsListComponent,
     CarItemComponent,
     CarsDetailComponent,
+    AuthorizationComponent,
     // DefaultComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
