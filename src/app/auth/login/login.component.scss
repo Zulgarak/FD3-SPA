@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+mat-card-title {
+  margin-bottom: 16px;
+}
+mat-card-content {
+  min-width: 320px;
+}
+mat-card-footer {
+  margin: 0;
+}
+mat-form-field {
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  color: #3f51b5;
+  &:hover {
+    text-decoration: underline;
+  }
+}

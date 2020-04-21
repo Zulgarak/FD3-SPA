@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title>Регистрация</mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите свое имя</mat-label>
+        <input matInput placeholder="ИМЯ" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите свой email</mat-label>
+        <input matInput placeholder="pat@example.com" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+      <mat-label>Введите пароль</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary">Зарегистрироваться</button>
+
+  </mat-card-content>
+</mat-card>

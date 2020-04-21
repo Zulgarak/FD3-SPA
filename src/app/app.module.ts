@@ -12,10 +12,15 @@ import { CarItemComponent } from './cars/cars-list/car-item/car-item.component';
 import { CarsDetailComponent } from './cars/cars-detail/cars-detail.component';
 import {SharedModule} from './shared/shared.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { DefaultComponent } from './layouts/default/default.component';
-import { AuthorizationComponent } from './authorization/authorization.component';
+// import { DefaultComponent } from './layouts/default/default.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -28,7 +33,9 @@ import {MatInputModule} from '@angular/material/input';
     CarsListComponent,
     CarItemComponent,
     CarsDetailComponent,
-    AuthorizationComponent,
+    AuthComponent,
+    LoginComponent,
+    RegistrationComponent,
     // DefaultComponent
   ],
   imports: [
@@ -37,7 +44,10 @@ import {MatInputModule} from '@angular/material/input';
     SharedModule,
     MatSidenavModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

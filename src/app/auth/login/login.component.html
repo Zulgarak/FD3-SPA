@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-title>Вход</mat-card-title>
+
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите свой email</mat-label>
+        <input matInput placeholder="pat@example.com" required>
+        <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите пароль</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary">Войти</button>
+
+
+  </mat-card-content>
+  <mat-card-footer><a href="#" color="primary">Регистрация</a> для тех, кто первый раз на сайте</mat-card-footer>
+
+</mat-card>
+
