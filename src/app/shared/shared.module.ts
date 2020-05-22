@@ -12,6 +12,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {HideMobileDirective} from './directives/hide-mobile.directive';
 import { BreakpointObserverDirective } from './directives/breakpoint-observer.directive';
+import {AppRoutingModule} from '../app-routing.module';
 
 
 
@@ -32,6 +33,7 @@ import { BreakpointObserverDirective } from './directives/breakpoint-observer.di
     MatButtonModule,
     MatListModule,
     MatSidenavModule,
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent,

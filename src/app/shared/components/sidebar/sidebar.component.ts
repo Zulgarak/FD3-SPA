@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserActiveService} from '../../services/user-active.service';
+import {UserActiveService} from '../../services/user-active/user-active.service';
 
 @Component({
   selector: 'app-sidebar',

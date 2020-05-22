@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {UserActiveService} from '../../services/user-active.service';
-import {ToggleSidebarService} from '../../services/toggle-sidebar.service';
+import {UserActiveService} from '../../services/user-active/user-active.service';
+import {ToggleSidebarService} from '../../services/toggle-sidebar/toggle-sidebar.service';
 
 @Component({
   selector: 'app-header',

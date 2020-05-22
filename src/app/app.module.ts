@@ -21,6 +21,9 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {AppRoutingModule} from './app-routing.module';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { CarsComponent } from './cars/cars.component';
 
 
 @NgModule({
@@ -36,6 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     AuthComponent,
     LoginComponent,
     RegistrationComponent,
+    ErrorPageComponent,
+    CarsComponent,
     // DefaultComponent
   ],
   imports: [
@@ -47,7 +52,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

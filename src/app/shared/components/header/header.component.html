@@ -1,14 +1,9 @@
 <mat-toolbar color="primary">
-
   <mat-toolbar-row>
-  <!--<mat-toolbar-row class="container">-->
-
     <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>menu</mat-icon>
     </button>
-
     <span> APP LOGO </span>
-
     <div class="header-nav-container">
       <div class="header-nav" *appBreakpointObserver="1023">
         <button mat-button [matMenuTriggerFor]="menu">Транспорт</button>
@@ -21,10 +16,6 @@
         <button mat-button>Автоности</button>
         <button mat-button>Знания</button>
       </div>
-
-
-
-
       <ul class="header-nav-user" *ngIf="getActive(); else elseBlock">
         <li>
           <button mat-icon-button>
@@ -46,29 +37,22 @@
               Выйти
             </button>
           </mat-menu>
-
         </li>
       </ul>
       <ng-template #elseBlock>
         <ul class="header-nav-user" >
           <li>
-            <button mat-button>
+            <button mat-button routerLink="/registration">
               Подать объявление
             </button>
           </li>
           <li>
-            <button mat-button (click)="toggleActive()">
+            <button mat-button routerLink="/login" (click)="toggleActive()">
               Войти
             </button>
           </li>
         </ul>
-
-
       </ng-template>
-
     </div>
-
   </mat-toolbar-row>
-
 </mat-toolbar>
-
