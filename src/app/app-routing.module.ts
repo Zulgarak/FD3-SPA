@@ -8,6 +8,8 @@ import {CarItemComponent} from './cars/cars-list/car-item/car-item.component';
 import {CarsComponent} from './cars/cars.component';
 import {AddFormCarComponent} from './cars/add-form-car/add-form-car.component';
 import {CarsDetailComponent} from './cars/cars-detail/cars-detail.component';
+import {CarsResolver} from './shared/services/cars/cars.resolver';
+
 
 // потом переделать роуты, после добавления car-detail, firebase
 
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'add', component: AddFormCarComponent},
-  {path: 'cars', component: CarsComponent},
+  {path: 'cars', component: CarsComponent,
+    resolve: { cars: CarsResolver }
+    },
   {path: 'cars/:id', component: CarsDetailComponent},
     // children: [
       // {path: 'list', component: CarsListComponent},

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CarsService} from '../../shared/services/cars/cars.service';
 import {Car} from '../../shared/models/cars.model';
 import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -9,25 +10,23 @@ import {Subscription} from 'rxjs';
   templateUrl: './cars-list.component.html',
   styleUrls: ['./cars-list.component.scss']
 })
-export class CarsListComponent implements OnInit, OnDestroy {
+export class CarsListComponent implements OnInit {
 
   cars: Car[];
   subscription: Subscription;
 
 
 
-  constructor( private carsService: CarsService) { }
+  constructor( private carsService: CarsService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.subscription = this.carsService.getCars()
-      .subscribe((cars: Car[]) => {
-        this.cars = cars;
-        console.log(this.cars);
-      });
-
+    this.activatedRoute.data.subscribe((data) => {
+      console.log(data);
+      this.cars = data.cars;
+    });
   }
-  ngOnDestroy():void {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy():void {
+    // this.subscription.unsubscribe();
+  // }
 
 }

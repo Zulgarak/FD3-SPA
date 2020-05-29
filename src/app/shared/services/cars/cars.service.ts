@@ -1,48 +1,48 @@
 import { Injectable } from '@angular/core';
 import {Car} from '../../models/cars.model';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
 
-  private cars: Car[] = [{id: '1', brand: 'Volvo', year: 2020, price: 13000, img: 'https://img1.autospot.ru/resize/400x-/ford/ford_tourneo_custom_(mikroavtobus)/737911/'},
-    {id: '2', brand: 'Volvo', year: 2020, price: 10000, img: 'https://img1.autospot.ru/resize/400x-/ford/ford_tourneo_custom_(mikroavtobus)/737911/'},
-    {id: '3', brand: 'Lada', year: 2019, price: 8000, img: 'https://img1.autospot.ru/resize/400x-/ford/ford_tourneo_custom_(mikroavtobus)/737911/'},
-    {id: '4', brand: 'Audi', year: 1995, price: 2000, img: 'https://img1.autospot.ru/resize/400x-/ford/ford_tourneo_custom_(mikroavtobus)/737911/'},
-    {id: '5', brand: 'BMV', year: 2001, price: 13000, img: 'https://img1.autospot.ru/resize/400x-/ford/ford_tourneo_custom_(mikroavtobus)/737911/'},
-    {id: '6', brand: 'Mersedes', year: 2000, price: 8000, img: 'https://img1.autospot.ru/resize/400x-/ford/ford_tourneo_custom_(mikroavtobus)/737911/'}];
+  private cars: Car[] = [];
 
-  private carsSubject = new BehaviorSubject<Car[]>([...this.cars]);
+  // private carsSubject = new BehaviorSubject<Car[]>([...this.cars]);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private http: HttpClient) { }
 
-  getCars() {
-    return this.carsSubject;
+
+  getCars(): Observable<Car[]> {
+    return this.http.get(`https://fe3-angular.firebaseio.com/cars.json`)
+      .pipe(
+        map((data) => {
+          const cars: Car[] = [];
+          for (let key in data) {
+            cars.push({id: key, ...data[key]});
+          }
+          this.cars = cars;
+          return this.cars;
+        })
+      );
   }
 
-  // getCar(id: number): Car {
-  //   return this.cars.find((car) => {
-  //     return +car.id === id;
-  //   });
-  // }
-  getCar(id: number) {
-    console.log(id);
-    const car = this.cars.find((item) => {
-      return +item.id === id;
-    });
-    if (!car) {
-      this.router.navigate(['404']);
-
-    }
-    return car;
+  getCar(id: string) {
+    return this.cars.find((car: Car) => car.id === id);
   }
 
-  addCars(car: Car) {
-    this.cars.push(car);
-    this.carsSubject.next([...this.cars]);
+  addCar(car) {
+    return this.http.post(`https://fe3-angular.firebaseio.com/cars.json`, car)
+      .pipe(
+        tap((data: {name: string}) => {
+          this.cars.push({id: data.name, ...car});
+        })
+      );
   }
 
 

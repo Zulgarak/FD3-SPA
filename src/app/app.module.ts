@@ -28,6 +28,7 @@ import { AddFormCarComponent } from './cars/add-form-car/add-form-car.component'
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -53,6 +54,7 @@ import {MatDividerModule} from '@angular/material/divider';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SharedModule,
     MatSidenavModule,
     MatFormFieldModule,
