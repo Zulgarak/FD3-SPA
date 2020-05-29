@@ -20,7 +20,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.carsService.getCars()
-      .subscribe((cars:Car[])=>{
+      .subscribe((cars: Car[]) => {
         this.cars = cars;
         console.log(this.cars);
       });

@@ -1,1 +1,52 @@
-<p>cars-detail works!</p>
+<mat-card>
+  <img [src]="car.img" [alt]="car.brand">
+  <mat-card-content>
+    <div class="card-header">
+      <mat-card-title-group>
+        <mat-card-title>{{car.brand}}</mat-card-title>
+        <mat-card-subtitle>{{'04.04.2020'}}</mat-card-subtitle>
+      </mat-card-title-group>
+      <h1>{{car.price | currency: 'USD' : 'symbol' : '1.0-0'}}</h1>
+    </div>
+    <div class="row">
+      <ul style="margin-bottom: 10px">
+        <li>
+          <p>Год выпуска</p>
+          <p>{{car.year}}</p>
+        </li>
+        <li>
+          <p>Объем двигателя</p>
+          <p>2,0 л</p>
+        </li>
+        <li>
+          <p>Коробка</p>
+          <p>Механика</p>
+        </li>
+        <li>
+          <p>Цвет</p>
+          <p>Черный</p>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <ul>
+        <li>
+          <p>Пробег (км.)</p>
+          <p>20000</p>
+        </li>
+        <li>
+          <p>Тип кузова</p>
+          <p>Купе</p>
+        </li>
+        <li>
+          <p>Тип двигателя</p>
+          <p>Бензин</p>
+        </li>
+        <li>
+          <p>Город</p>
+          <p>Гродно</p>
+        </li>
+      </ul>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+  //flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 900px;
+}
+mat-card {
+  //margin: 0 auto;
+  //max-width: 900px;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  //flex-direction: column;
+  //align-items: flex-end;
+  justify-content: space-between;
+  //width: 500px;
+}
+.full-width {
+  width: 100%;
+}
+mat-form-field {
+  //display: block;
+  //width: 100%;
+  width: 48%;
+}
+mat-card mat-divider {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+

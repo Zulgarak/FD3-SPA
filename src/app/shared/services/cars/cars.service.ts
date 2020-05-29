@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Car} from '../../models/cars.model';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,27 @@ export class CarsService {
 
   private carsSubject = new BehaviorSubject<Car[]>([...this.cars]);
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   getCars() {
     return this.carsSubject;
+  }
+
+  // getCar(id: number): Car {
+  //   return this.cars.find((car) => {
+  //     return +car.id === id;
+  //   });
+  // }
+  getCar(id: number) {
+    console.log(id);
+    const car = this.cars.find((item) => {
+      return +item.id === id;
+    });
+    if (!car) {
+      this.router.navigate(['404']);
+
+    }
+    return car;
   }
 
   addCars(car: Car) {

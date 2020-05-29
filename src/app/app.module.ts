@@ -24,6 +24,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {AppRoutingModule} from './app-routing.module';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CarsComponent } from './cars/cars.component';
+import { AddFormCarComponent } from './cars/add-form-car/add-form-car.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDividerModule} from '@angular/material/divider';
+
+
 
 
 @NgModule({
@@ -41,6 +47,7 @@ import { CarsComponent } from './cars/cars.component';
     RegistrationComponent,
     ErrorPageComponent,
     CarsComponent,
+    AddFormCarComponent,
     // DefaultComponent
   ],
   imports: [
@@ -53,6 +60,9 @@ import { CarsComponent } from './cars/cars.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatDividerModule,
     AppRoutingModule
   ],
   providers: [],

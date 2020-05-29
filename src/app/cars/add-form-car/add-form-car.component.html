@@ -1,0 +1,150 @@
+<h1>Новое объявление</h1>
+<mat-card>
+  <h2>Указать параметры автомобиля</h2>
+  <form class="form">
+
+    <mat-form-field>
+      <mat-label>Марка автомобиля*</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Модель</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Год выпуска</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Цвет</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+
+      <mat-label>Количество дверей</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Тип кузова</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Привод</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Коробка передач</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Комплектация</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Тип двигателя</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Объем двигателя</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Состояние</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Пробег</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Цена</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Текст объявления</mat-label>
+      <!--<input type="text">-->
+    <textarea matInput #message maxlength="256"></textarea>
+      <!--<textarea matInput #message maxlength="256">-->
+
+      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Опубликовать</button>
+    <h2 class="full-width" style="margin: 16px 0">Добавить фотографии</h2>
+
+
+  </form>
+
+
+</mat-card>
