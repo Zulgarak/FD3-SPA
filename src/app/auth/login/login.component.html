@@ -2,21 +2,36 @@
   <mat-card-title>Вход</mat-card-title>
 
   <mat-card-content>
-    <form>
+    <form #logForm="ngForm" (ngSubmit)="submit(logForm)">
       <mat-form-field appearance="outline">
         <mat-label>Введите свой email</mat-label>
-        <input matInput placeholder="pat@example.com" required>
+        <input matInput
+               placeholder="pat@example.com"
+               id="log_email"
+               name="log_email"
+               required
+               email
+               ngModel>
         <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Введите пароль</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" required>
+        <input matInput
+               [type]="hide ? 'password' : 'text'"
+               id="log_password"
+               name="log_password"
+               required
+               ngModel>
         <button mat-icon-button matSuffix (click)="hide = !hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              >Войти</button>
     </form>
-    <button mat-raised-button color="primary">Войти</button>
+
 
 
   </mat-card-content>

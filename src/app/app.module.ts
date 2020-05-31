@@ -28,7 +28,13 @@ import { AddFormCarComponent } from './cars/add-form-car/add-form-car.component'
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {ErrorsComponent} from './shared/errors/errors.component';
+import {ErrorInterceptor} from './shared/errors/error.interceptor';
+import {LoaderComponent} from './shared/loader/loader.component';
+import {LoaderInterceptor} from './shared/loader/loader.interceptor';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -49,12 +55,15 @@ import {HttpClientModule} from '@angular/common/http';
     ErrorPageComponent,
     CarsComponent,
     AddFormCarComponent,
+    ErrorsComponent,
+    LoaderComponent,
     // DefaultComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     SharedModule,
     MatSidenavModule,
     MatFormFieldModule,
@@ -64,10 +73,14 @@ import {HttpClientModule} from '@angular/common/http';
     MatIconModule,
     MatSelectModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
     MatDividerModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

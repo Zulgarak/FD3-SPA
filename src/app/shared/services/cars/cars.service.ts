@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class CarsService {
 
 
   getCars(): Observable<Car[]> {
-    return this.http.get(`https://fe3-angular.firebaseio.com/cars.json`)
+    return this.http.get(`${environment.api}/cars.json`)
       .pipe(
         map((data) => {
           const cars: Car[] = [];
@@ -37,7 +38,7 @@ export class CarsService {
   }
 
   addCar(car) {
-    return this.http.post(`https://fe3-angular.firebaseio.com/cars.json`, car)
+    return this.http.post(`${environment.api}/cars.json`, car)
       .pipe(
         tap((data: {name: string}) => {
           this.cars.push({id: data.name, ...car});

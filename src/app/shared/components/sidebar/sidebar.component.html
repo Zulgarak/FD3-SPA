@@ -1,8 +1,8 @@
     <mat-nav-list>
-      <ng-container *ngIf="getActive()">
+      <ng-container *ngIf="($user | async)">
         <div class="profile-card">
           <h2>Олег</h2>
-          <h4>olegmr1991@gmail.com</h4>
+          <h4>{{userEmail}}</h4>
         </div>
         <mat-divider></mat-divider>
         <a mat-list-item>
@@ -25,7 +25,7 @@
           <mat-icon>settings</mat-icon>
           <span>Настройки</span>
         </a>
-        <a mat-list-item (click)="toggleActive()">
+        <a mat-list-item>
           <mat-icon>exit_to_app</mat-icon>
           <span>Выйти</span>
         </a>

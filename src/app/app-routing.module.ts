@@ -11,18 +11,16 @@ import {CarsDetailComponent} from './cars/cars-detail/cars-detail.component';
 import {CarsResolver} from './shared/services/cars/cars.resolver';
 
 
-// потом переделать роуты, после добавления car-detail, firebase
-
-
 const routes: Routes = [
   {path: '', redirectTo: 'cars', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'add', component: AddFormCarComponent},
   {path: 'cars', component: CarsComponent,
     resolve: { cars: CarsResolver }
     },
-  {path: 'cars/:id', component: CarsDetailComponent},
+  {path: 'cars/add', component: AddFormCarComponent},
+  {path: 'cars/:id', component: CarsDetailComponent,
+    resolve: { cars: CarsResolver }},
     // children: [
       // {path: 'list', component: CarsListComponent},
       // {path: ':id', component: CarItemComponent},

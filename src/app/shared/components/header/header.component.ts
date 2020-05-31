@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {UserActiveService} from '../../services/user-active/user-active.service';
+import {Component, OnInit} from '@angular/core';
 import {ToggleSidebarService} from '../../services/toggle-sidebar/toggle-sidebar.service';
+import {AuthService} from '../../../auth/auth.service';
+import {LoginUser} from '../../../auth/user';
 
 @Component({
   selector: 'app-header',
@@ -10,20 +11,12 @@ import {ToggleSidebarService} from '../../services/toggle-sidebar/toggle-sidebar
 export class HeaderComponent implements OnInit {
 
 
-  constructor(private userActiveService: UserActiveService,
-              private toggleSidebarService: ToggleSidebarService) { }
+  constructor(private toggleSidebarService: ToggleSidebarService,
+              private authService: AuthService) { }
 
-  ngOnInit(): void {}
-  //с сервисами ещё попрактиковаться
-  toggleActive() {
-    this.userActiveService.toggleUserActive();
+  $user = this.authService.user;
+  ngOnInit(): void {
   }
-  getActive() {
-    return this.userActiveService.userActive();
-  }
-
-
-
 
   toggleSidebar() {
     this.toggleSidebarService.sideBarToggle();
