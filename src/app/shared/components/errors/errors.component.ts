@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorsService } from './errors.service';
 import { CustomError } from './error.interface';
+import {errorOnOf} from './error-animation';
 
 @Component({
   selector: 'app-errors',
   templateUrl: './errors.component.html',
-  styleUrls: ['errors.component.scss']
+  styleUrls: ['errors.component.scss'],
+  animations: [errorOnOf]
 })
 export class ErrorsComponent implements OnInit {
   error: CustomError = null;
@@ -16,7 +18,6 @@ export class ErrorsComponent implements OnInit {
     this.errorService.error
       .subscribe((error: CustomError) => {
         this.error = error;
-      })
+      });
   }
-
 }
