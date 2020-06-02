@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CarsService} from '../../shared/services/cars/cars.service';
+import {CarsService} from '../cars.service';
 import {Car} from '../../shared/models/cars.model';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';

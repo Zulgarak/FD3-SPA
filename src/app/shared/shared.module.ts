@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FooterComponent} from './components/footer/footer.component';
-import {HeaderComponent} from './components/header/header.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {HideMobileDirective} from './directives/hide-mobile.directive';
 import { BreakpointObserverDirective } from './directives/breakpoint-observer.directive';
-import {AppRoutingModule} from '../app-routing.module';
-
+import { AppRoutingModule } from '../app-routing.module';
+import { MaterialModule } from './modules/material.module';
+import { LoaderComponent } from './components/loader/loader.component';
+import { ErrorsComponent } from './components/errors/errors.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 @NgModule({
@@ -21,26 +16,25 @@ import {AppRoutingModule} from '../app-routing.module';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    HideMobileDirective,
     BreakpointObserverDirective,
+    ErrorsComponent,
+    LoaderComponent,
+    ErrorPageComponent,
   ],
   imports: [
     CommonModule,
-    MatMenuModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatButtonModule,
-    MatListModule,
-    MatSidenavModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    HideMobileDirective,
     BreakpointObserverDirective,
+    MaterialModule,
+    ErrorsComponent,
+    LoaderComponent,
+    ErrorPageComponent,
   ],
 })
 export class SharedModule { }

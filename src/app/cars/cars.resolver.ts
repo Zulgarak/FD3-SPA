@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import {Car} from '../../models/cars.model';
+import {Car} from '../shared/models/cars.model';
 import {CarsService} from './cars.service';
 import {Observable} from 'rxjs';
 

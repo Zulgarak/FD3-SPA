@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Car} from '../../models/cars.model';
+import {Car} from '../shared/models/cars.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {exhaustMap, map, take, tap} from 'rxjs/operators';
-import {environment} from '../../../../environments/environment';
-import {loader} from '../../loader/loader.decorator';
+import {environment} from '../../environments/environment';
+import {loader} from '../shared/components/loader/loader.decorator';
 
 
 @Injectable({

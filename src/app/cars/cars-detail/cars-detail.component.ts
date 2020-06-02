@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {CarsService} from '../../shared/services/cars/cars.service';
+import {CarsService} from '../cars.service';
 import {Car} from '../../shared/models/cars.model';
 import {Subscription} from 'rxjs';
 

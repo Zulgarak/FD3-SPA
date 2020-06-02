@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {AuthResponse} from '../auth-response';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { AuthResponse } from '../auth-response';
 
 @Component({
   selector: 'app-registration',
@@ -22,11 +22,9 @@ export class RegistrationComponent implements OnInit {
     this.authService.signUp(form.value.reg_email, form.value.reg_password)
       .subscribe(
         (data: AuthResponse) => {
-          // console.log(data);
           form.resetForm();
         },
           (error) => {
-            // console.log(error);
           form.resetForm();
         }
       );

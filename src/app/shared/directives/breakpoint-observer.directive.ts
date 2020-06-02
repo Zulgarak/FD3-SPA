@@ -1,6 +1,7 @@
 import {Directive, Input, OnInit, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
 import {OnDestroy} from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
+import {Subscription} from 'rxjs';
 
 
 @Directive({
@@ -10,7 +11,7 @@ export class BreakpointObserverDirective implements OnInit, OnDestroy {
 
   @Input() appBreakpointObserver: number;
 
-  private subscriber;
+  private subscriber: Subscription;
 
 
   constructor(private breakpointObserver: BreakpointObserver,
@@ -31,7 +32,7 @@ export class BreakpointObserverDirective implements OnInit, OnDestroy {
         }
       });
   }
-//не до конца понимаю работу стримов, изучить
+
   ngOnDestroy() {
     this.subscriber.unsubscribe();
   }

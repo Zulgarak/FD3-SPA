@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {AuthResponse} from '../auth-response';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { AuthResponse } from '../auth-response';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,6 @@ import {AuthResponse} from '../auth-response';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-
 
   constructor(private authService: AuthService) { }
 

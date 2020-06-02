@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {News} from '../../shared/models/news.model';
+import {News} from '../../../shared/models/news.model';
 
 
 @Component({
