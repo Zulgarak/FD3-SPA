@@ -8,9 +8,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './shared/components/errors/error.interceptor';
 import { LoaderInterceptor } from './shared/components/loader/loader.interceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { CarsModule } from './cars/cars.module';
+// import { CarsModule } from './cars/cars.module';
 import { AuthModule } from './auth/auth.module';
-import { NewsModule } from './news/news.module';
+// import { NewsModule } from './news/news.module';
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { NewsModule } from './news/news.module';
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
-    CarsModule,
+    AuthRoutingModule,
+    // CarsModule,
     AuthModule,
-    NewsModule
+    // NewsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

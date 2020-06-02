@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 import {NewsListComponent} from './news-list/news-list.component';
 import {NewsItemComponent} from './news-list/news-item/news-item.component';
+import {NewsRoutingModule} from './news-routing.module';
 
 
 
@@ -10,8 +11,7 @@ import {NewsItemComponent} from './news-list/news-item/news-item.component';
 @NgModule({
   imports: [
     CommonModule,
-    // FormsModule,
-    // CarsRoutingModule,
+    NewsRoutingModule,
     SharedModule
   ],
   declarations: [

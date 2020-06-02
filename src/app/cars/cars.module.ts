@@ -7,6 +7,7 @@ import {CarsListComponent} from './cars-list/cars-list.component';
 import {CarItemComponent} from './cars-list/car-item/car-item.component';
 import {CarsDetailComponent} from './cars-detail/cars-detail.component';
 import {AddFormCarComponent} from './add-form-car/add-form-car.component';
+import {CarsRoutingModule} from './cars-routing.module';
 
 
 
@@ -14,7 +15,7 @@ import {AddFormCarComponent} from './add-form-car/add-form-car.component';
   imports: [
     CommonModule,
     FormsModule,
-    // CarsRoutingModule,
+    CarsRoutingModule,
     SharedModule
   ],
   declarations: [
