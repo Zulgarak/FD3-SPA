@@ -9,17 +9,19 @@ import {CarsComponent} from './cars/cars.component';
 import {AddFormCarComponent} from './cars/add-form-car/add-form-car.component';
 import {CarsDetailComponent} from './cars/cars-detail/cars-detail.component';
 import {CarsResolver} from './shared/services/cars/cars.resolver';
+import {AuthGuard} from './auth/auth.guard';
+import {NoAuthGuard} from './auth/no-auth.guard';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'cars', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
-  {path: 'cars', component: CarsComponent,
+  {path: 'login', component: LoginComponent,  canActivate: [NoAuthGuard]},
+  {path: 'registration', component: RegistrationComponent,  canActivate: [NoAuthGuard]},
+  {path: 'cars', component: CarsComponent, canActivate: [AuthGuard],
     resolve: { cars: CarsResolver }
     },
-  {path: 'cars/add', component: AddFormCarComponent},
-  {path: 'cars/:id', component: CarsDetailComponent,
+  {path: 'cars/add', component: AddFormCarComponent, canActivate: [AuthGuard]},
+  {path: 'cars/:id', component: CarsDetailComponent, canActivate: [AuthGuard],
     resolve: { cars: CarsResolver }},
     // children: [
       // {path: 'list', component: CarsListComponent},

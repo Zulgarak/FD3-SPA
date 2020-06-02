@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import {Car} from '../../models/cars.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {exhaustMap, map, take, tap} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
+import {loader} from '../../loader/loader.decorator';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,9 @@ export class CarsService {
   constructor(private router: Router,
               private http: HttpClient) { }
 
-
-  getCars(): Observable<Car[]> {
-    return this.http.get(`${environment.api}/cars.json`)
+  @loader()
+  getCars(headers?: HttpHeaders): Observable<Car[]> {
+     return this.http.get(`${environment.api}/cars.json`, {headers})
       .pipe(
         map((data) => {
           const cars: Car[] = [];

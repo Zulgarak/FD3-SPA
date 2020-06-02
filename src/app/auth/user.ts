@@ -8,7 +8,7 @@ export class LoginUser {
   }
 
   get token() {
-    if (this._expirationDate && this._expirationDate <= new Date()) {
+    if (this._expirationDate && this._expirationDate >= new Date()) {
       return this._token;
     }
     return null;

@@ -12,24 +12,31 @@ import {Subscription} from 'rxjs';
 export class SidebarComponent implements OnInit, OnDestroy {
 
   sideBarOpen = false;
+  $user = this.authService.user;
+  userEmail: string;
+  userEmailSubscription: Subscription;
 
   constructor(private toggleSidebarService: ToggleSidebarService,
               private authService: AuthService) { }
 
-  $user = this.authService.user;
-  userEmail: string;
-  userEmailSubscription: Subscription;
+
   ngOnInit(): void {
     this.userEmailSubscription = this.authService.user
       .subscribe((user: LoginUser) => {
-        console.log(user);
-        this.userEmail = user.email;
+        if (!!user) {
+          this.userEmail = user.email;
+        }
       });
   }
 
   sideBarToggle(event) {
     this.sideBarOpen = !this.sideBarOpen;
   }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
   ngOnDestroy(): void {
     this.userEmailSubscription.unsubscribe();
   }

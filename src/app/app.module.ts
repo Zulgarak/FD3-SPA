@@ -35,6 +35,7 @@ import {ErrorInterceptor} from './shared/errors/error.interceptor';
 import {LoaderComponent} from './shared/loader/loader.component';
 import {LoaderInterceptor} from './shared/loader/loader.interceptor';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {AuthInterceptor} from './auth/auth.interceptor';
 
 
 
@@ -78,6 +79,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppRoutingModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],

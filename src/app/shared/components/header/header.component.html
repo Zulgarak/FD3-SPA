@@ -33,7 +33,7 @@
             <mat-icon>person_outline</mat-icon>
           </button>
           <mat-menu #logout="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="onLogout()">
               <mat-icon>exit_to_app</mat-icon>
               Выйти
             </button>

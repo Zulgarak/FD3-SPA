@@ -9,12 +9,10 @@ import {LoginUser} from '../../../auth/user';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-
+  $user = this.authService.user;
   constructor(private toggleSidebarService: ToggleSidebarService,
               private authService: AuthService) { }
 
-  $user = this.authService.user;
   ngOnInit(): void {
   }
 
@@ -25,6 +23,10 @@ export class HeaderComponent implements OnInit {
     //     new Event('resize')
     //   );
     // }, 300);
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }
