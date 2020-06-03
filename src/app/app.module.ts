@@ -16,6 +16,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import {environment} from '../environments/environment';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-    {provide: BUCKET, useValue: 'gs://fe3-angular.appspot.com/'}
+    { provide: BUCKET, useValue: 'gs://fe3-angular.appspot.com/' },
   ],
   bootstrap: [AppComponent]
 })

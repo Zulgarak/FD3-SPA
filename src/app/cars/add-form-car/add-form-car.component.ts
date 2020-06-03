@@ -9,7 +9,8 @@ import {CarsService} from '../cars.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {AuthService} from '../../auth/auth.service';
-import {CanComponentDeactivate} from '../car-form.guard';
+import {CanComponentDeactivate} from '../../shared/models/can-component-deactivate.model';
+
 
 
 @Component({
@@ -140,9 +141,7 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+    this.userSubscription.unsubscribe();
   }
 
 }

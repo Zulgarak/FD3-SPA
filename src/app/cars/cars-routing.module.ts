@@ -7,6 +7,7 @@ import { AddFormCarComponent } from './add-form-car/add-form-car.component';
 import { CarsResolver } from './cars.resolver';
 import {UserGuard} from '../auth/user.guard';
 import {CarFormGuard} from './car-form.guard';
+import {CarsGuard} from './cars.guard';
 
 
 
@@ -24,7 +25,7 @@ const routes: Routes = [
     },
   {path: ':id',
     component: CarsDetailComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, CarsGuard],
     resolve: { cars: CarsResolver }
     },
   {path: ':id/edit',
