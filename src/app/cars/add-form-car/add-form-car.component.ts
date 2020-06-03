@@ -9,6 +9,7 @@ import {CarsService} from '../cars.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {AuthService} from '../../auth/auth.service';
+import {CanComponentDeactivate} from '../car-form.guard';
 
 
 @Component({
@@ -16,7 +17,7 @@ import {AuthService} from '../../auth/auth.service';
   templateUrl: './add-form-car.component.html',
   styleUrls: ['./add-form-car.component.scss']
 })
-export class AddFormCarComponent implements OnInit, OnDestroy {
+export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
   public form: FormGroup;
   public amountDoors: string[] = ['1', '2', '3', '4', '5'];
@@ -43,15 +44,15 @@ export class AddFormCarComponent implements OnInit, OnDestroy {
     this.userSubscription = this.authService.getUser().subscribe((data) => {
       this.user = data;
     });
-    this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.paramMapId);
-    console.log('cars ');
-    this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.carId = paramMap.get('id');
-      console.log(this.carId);
-      this.activeCar = this.carsService.getCar(this.carId);
-      this.imgUrl = this.activeCar.img;
-    });
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+      this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
+      this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+        this.carId = paramMap.get('id');
+        console.log(this.carId);
+        this.activeCar = this.carsService.getCar(this.carId);
+        this.imgUrl = this.activeCar.img;
+      });
+    }
     this._initForm();
   }
 
@@ -106,6 +107,10 @@ export class AddFormCarComponent implements OnInit, OnDestroy {
     this.carsService.addCar(this.car).subscribe((data) => {
       this.router.navigate(['/cars']);
     });
+  }
+
+  canDeactivate() {
+    return confirm('Вы действительно хотите покинуть страницу?');
   }
 
   private _initForm() {
