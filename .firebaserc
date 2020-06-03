@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "fe3-angular"
+  },
+  "targets": {
+    "fe3-angular": {
+      "hosting": {
+        "FD3-SPA": [
+          "fe3-angular"
+        ]
+      }
+    }
   }
 }

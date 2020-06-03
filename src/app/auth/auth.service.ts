@@ -21,6 +21,10 @@ export class AuthService {
               private router: Router,
               private errorsService: ErrorsService) { }
 
+  getUser() {
+    return this.user;
+  }
+
   @loader()
   signUp(email: string, password: string, headers?: HttpHeaders) {
     return this.http.post(`${environment.signUpUrl}${environment.apiKey}`,

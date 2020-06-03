@@ -12,6 +12,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
 // import { NewsModule } from './news/news.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,14 @@ import { AuthRoutingModule } from './auth/auth-routing.module';
     // CarsModule,
     AuthModule,
     // NewsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    {provide: BUCKET, useValue: 'gs://fe3-angular.appspot.com/'}
   ],
   bootstrap: [AppComponent]
 })

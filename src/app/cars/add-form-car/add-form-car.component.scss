@@ -21,14 +21,25 @@ mat-card {
 .full-width {
   width: 100%;
 }
+.container-form-field {
+  width: 48%;
+}
 mat-form-field {
   //display: block;
-  //width: 100%;
-  width: 48%;
+  width: 100%;
+  //width: 48%;
 }
 mat-card mat-divider {
   position: relative;
   width: 100%;
   margin-bottom: 10px;
+}
+button[disabled="true"].mat-raised-button {
+  color: #3f51b5;
+}
+
+img {
+  display: block;
+  height: 100%;
 }
 

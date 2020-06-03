@@ -1,10 +1,10 @@
-<mat-card>
-  <img [src]="car.img" [alt]="car.brand">
+<mat-card class="container">
+  <img [src]="car?.img" [alt]="car.brand">
   <mat-card-content>
     <div class="card-header">
       <mat-card-title-group>
         <mat-card-title>{{car.brand}}</mat-card-title>
-        <mat-card-subtitle>{{'04.04.2020'}}</mat-card-subtitle>
+        <mat-card-subtitle>{{car.date | date}}</mat-card-subtitle>
       </mat-card-title-group>
       <h1>{{car.price | currency: 'USD' : 'symbol' : '1.0-0'}}</h1>
     </div>
@@ -16,15 +16,15 @@
         </li>
         <li>
           <p>Объем двигателя</p>
-          <p>2,0 л</p>
+          <p>{{car.engineCapacity}}</p>
+        </li>
+        <li>
+          <p>Тип двигателя</p>
+          <p>{{car.engineType}}</p>
         </li>
         <li>
           <p>Коробка</p>
-          <p>Механика</p>
-        </li>
-        <li>
-          <p>Цвет</p>
-          <p>Черный</p>
+          <p>{{car.transmission}}</p>
         </li>
       </ul>
     </div>
@@ -32,19 +32,19 @@
       <ul>
         <li>
           <p>Пробег (км.)</p>
-          <p>20000</p>
+          <p>{{car.mileage}}</p>
         </li>
         <li>
           <p>Тип кузова</p>
-          <p>Купе</p>
+          <p>{{car.bodyType}}</p>
         </li>
         <li>
           <p>Тип двигателя</p>
-          <p>Бензин</p>
+          <p>{{car.engineType}}</p>
         </li>
         <li>
-          <p>Город</p>
-          <p>Гродно</p>
+          <p>Цвет</p>
+          <p>{{car.color}}</p>
         </li>
       </ul>
     </div>

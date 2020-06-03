@@ -43,6 +43,7 @@ export class CarsService {
     return this.http.post(`${environment.api}/cars.json`, car)
       .pipe(
         tap((data: {name: string}) => {
+          console.log(car);
           this.cars.push({id: data.name, ...car});
         })
       );

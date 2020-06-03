@@ -123,6 +123,10 @@
               "devServerTarget": "FD3-SPA:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
