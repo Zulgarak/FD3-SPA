@@ -40,26 +40,19 @@ export class AddFormCarComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
-    if (this.activatedRoute.snapshot.paramMap.get('id')
-      && this.carsService.getCar(this.activatedRoute.snapshot.paramMap.get('id'))) {
-
-      this.userSubscription = this.authService.getUser().subscribe((data) => {
-        this.user = data;
-      });
-      this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
-      console.log(this.paramMapId);
-      console.log('cars ');
-      this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-        this.carId = paramMap.get('id');
-        console.log(this.carId);
-        this.activeCar = this.carsService.getCar(this.carId);
-        this.imgUrl = this.activeCar.img;
-      });
-      this._initForm();
-    } else {
-      this.router.navigate(['/cars']);
-    }
+    this.userSubscription = this.authService.getUser().subscribe((data) => {
+      this.user = data;
+    });
+    this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.paramMapId);
+    console.log('cars ');
+    this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.carId = paramMap.get('id');
+      console.log(this.carId);
+      this.activeCar = this.carsService.getCar(this.carId);
+      this.imgUrl = this.activeCar.img;
+    });
+    this._initForm();
   }
 
   deleteFile() {

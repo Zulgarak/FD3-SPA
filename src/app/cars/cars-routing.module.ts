@@ -5,7 +5,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { CarsDetailComponent } from './cars-detail/cars-detail.component';
 import { AddFormCarComponent } from './add-form-car/add-form-car.component';
 import { CarsResolver } from './cars.resolver';
-
+import {UserGuard} from '../auth/user.guard';
 
 
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'add', component: AddFormCarComponent, canActivate: [AuthGuard]},
   {path: ':id', component: CarsDetailComponent, canActivate: [AuthGuard],
     resolve: { cars: CarsResolver }},
-  {path: ':id/edit', component: AddFormCarComponent, canActivate: [AuthGuard],
+  {path: ':id/edit', component: AddFormCarComponent, canActivate: [AuthGuard, UserGuard],
     resolve: { cars: CarsResolver }},
 ];
 
