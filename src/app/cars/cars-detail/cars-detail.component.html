@@ -48,5 +48,15 @@
         </li>
       </ul>
     </div>
+    <ng-container *ngIf="access">
+    <button mat-raised-button
+            color="primary"
+            style="margin-right: 10px"
+            (click)="onEdit()">Редактировать</button>
+    <button mat-raised-button
+            color="warn"
+            (click)="onDelete()">Удалить</button>
+    </ng-container>
+
   </mat-card-content>
 </mat-card>

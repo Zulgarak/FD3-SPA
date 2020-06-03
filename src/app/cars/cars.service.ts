@@ -14,7 +14,6 @@ import {loader} from '../shared/components/loader/loader.decorator';
 export class CarsService {
 
   private cars: Car[] = [];
-
   // private carsSubject = new BehaviorSubject<Car[]>([...this.cars]);
 
   constructor(private router: Router,
@@ -48,6 +47,28 @@ export class CarsService {
         })
       );
   }
+  updateCar(id: string, car) {
+    return this.http.put(`${environment.api}/cars/${id}.json`, car);
+  }
+
+  deleteCar(id) {
+    return this.http.delete(`${environment.api}/cars/${id}.json`)
+      .pipe(
+        map(
+          (data) => {
+            console.log(data);
+            let index: number;
+            this.cars.forEach((car, carIndex) => {
+              console.log(car);
+              if (car.id === id) {
+                index = carIndex;
+              }
+            });
+            this.cars.splice(index, 1);
+          }),
+      );
+  }
+
 
 
 }

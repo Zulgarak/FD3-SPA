@@ -8,12 +8,15 @@ import { CarsResolver } from './cars.resolver';
 
 
 
+
 const routes: Routes = [
   {path: '', component: CarsComponent, canActivate: [AuthGuard],
     resolve: { cars: CarsResolver }
   },
   {path: 'add', component: AddFormCarComponent, canActivate: [AuthGuard]},
   {path: ':id', component: CarsDetailComponent, canActivate: [AuthGuard],
+    resolve: { cars: CarsResolver }},
+  {path: ':id/edit', component: AddFormCarComponent, canActivate: [AuthGuard],
     resolve: { cars: CarsResolver }},
 ];
 

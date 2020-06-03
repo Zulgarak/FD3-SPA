@@ -1,16 +1,29 @@
 :host {
-  width: 100%;
+  width: 31%;
+  //margin-bottom: 20px;
+  @media only screen and (max-width: 1024px) {
+    width: 47%;
+    }
+  @media only screen and (max-width: 845px) {
+    width: 100%;
+  }
 }
+
 mat-card {
   display: flex;
+  flex-direction: column;
+  //flex-wrap: wrap;
+  //max-width: 480px;
+  width: 100%;
   //justify-content: space-between;
-  align-items: flex-start;
+  //align-items: flex-start;
   padding: 20px;
-  margin-bottom: 30px;
+  margin: 0 auto 20px auto;
+  //margin: 30px;
   box-sizing: border-box;
 
   &-content {
-    padding: 0 0 0 25px;
+    //padding: 0 0 0 25px;
     width: 100%;
   }
 
@@ -29,10 +42,10 @@ mat-card {
   }
 }
 
-img {
-  display: block;
-  width: 250px;
-}
+//img {
+//  display: block;
+//  width: 100%;
+//}
 mat-icon {
   color: #bbb;
     &:hover {
@@ -68,3 +81,6 @@ li {
 p {
   margin-bottom: 0;
 }
+
+
+

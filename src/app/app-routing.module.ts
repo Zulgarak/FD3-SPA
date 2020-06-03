@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import {ErrorPageComponent} from './shared/components/error-page/error-page.component';
 
 
 const routes: Routes = [

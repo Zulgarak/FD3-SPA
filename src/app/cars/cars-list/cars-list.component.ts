@@ -25,8 +25,5 @@ export class CarsListComponent implements OnInit {
       this.cars = data.cars;
     });
   }
-  // ngOnDestroy():void {
-    // this.subscription.unsubscribe();
-  // }
 
 }

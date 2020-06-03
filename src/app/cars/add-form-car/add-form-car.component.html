@@ -43,10 +43,6 @@
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
-        <mat-error *ngIf="form.controls.year.errors?.pattern">
-          <!--Поле обязательно для заполнения-->
-          Введите число
-        </mat-error>
         <!--<mat-select>-->
           <!--<mat-option *ngFor="let car of cars" [value]="car.value">-->
             <!--{{car.viewValue}}-->
@@ -177,16 +173,18 @@
     <h2 class="full-width" style="margin: 16px 0">Добавить фотографии</h2>
     <p>Выберите 1 файл</p>
     <input type="file" name="file" #fileInput (change)="onFileChange($event)" />
+
+    <!--<img [src]="activeCar ? activeCar.img : imgUrl" alt="" class="full-width" style="margin: 16px 0">-->
     <img [src]="imgUrl" alt="" class="full-width" style="margin: 16px 0">
 
-    <!--<button mat-raised-button-->
-            <!--color="primary"-->
-            <!--type="submit"-->
-            <!--[disabled]="form.invalid">Опубликовать</button>-->
     <button mat-raised-button
             color="primary"
             type="submit"
-            >Опубликовать</button>
+            [disabled]="form.invalid">Опубликовать</button>
+    <!--<button mat-raised-button-->
+            <!--color="primary"-->
+            <!--type="submit"-->
+            <!--&gt;Опубликовать</button>-->
 
 
   </form>

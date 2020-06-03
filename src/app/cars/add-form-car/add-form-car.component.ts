@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {logger} from 'codelyzer/util/logger';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Car} from '../../shared/models/cars.model';
 import {CarsService} from '../cars.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {AuthService} from '../../auth/auth.service';
-
-
-
 
 
 @Component({
@@ -19,33 +16,62 @@ import {AuthService} from '../../auth/auth.service';
   templateUrl: './add-form-car.component.html',
   styleUrls: ['./add-form-car.component.scss']
 })
-export class AddFormCarComponent implements OnInit {
+export class AddFormCarComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public amountDoors: string[] = ['1', '2', '3', '4', '5'];
 
   public car;
   public user;
+  public userSubscription: Subscription;
   public path: string;
   public imgUrl: AngularFireStorageReference;
+
+  carSubscription: Subscription;
+  carId;
+  activeCar;
+  paramMapId;
 
   constructor(private carsService: CarsService,
               private router: Router,
               private authService: AuthService,
-              private angularFireStorage: AngularFireStorage) { }
+              private angularFireStorage: AngularFireStorage,
+              private activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit(): void {
-    this._initForm();
-    this.authService.getUser().subscribe((data) => {
-      this.user = data;
-    });
+
+    if (this.activatedRoute.snapshot.paramMap.get('id')
+      && this.carsService.getCar(this.activatedRoute.snapshot.paramMap.get('id'))) {
+
+      this.userSubscription = this.authService.getUser().subscribe((data) => {
+        this.user = data;
+      });
+      this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
+      console.log(this.paramMapId);
+      console.log('cars ');
+      this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+        this.carId = paramMap.get('id');
+        console.log(this.carId);
+        this.activeCar = this.carsService.getCar(this.carId);
+        this.imgUrl = this.activeCar.img;
+      });
+      this._initForm();
+    } else {
+      this.router.navigate(['/cars']);
+    }
   }
 
   deleteFile() {
     const storage = this.angularFireStorage.storage;
     const storageRef = storage.ref();
-    const imagesRef = storageRef.child(this.path);
+    let imagesRef;
+    if (this.activeCar) {
+       imagesRef = storageRef.child(this.activeCar.img);
+    } else {
+       imagesRef = storageRef.child(this.path);
+    }
+    // const imagesRef = storageRef.child(this.path);
     console.log(imagesRef);
     imagesRef.delete().then(() => {
       console.log('deleted');
@@ -78,6 +104,12 @@ export class AddFormCarComponent implements OnInit {
     this.car.img = this.imgUrl;
     this.car.userId = this.user.id;
     this.car.date = new Date();
+    if (this.activeCar) {
+      this.carsService.updateCar(this.activeCar.id, this.car).subscribe((data) => {
+        this.router.navigate(['/cars']);
+      });
+      return false;
+    }
     this.carsService.addCar(this.car).subscribe((data) => {
       this.router.navigate(['/cars']);
     });
@@ -85,28 +117,34 @@ export class AddFormCarComponent implements OnInit {
 
   private _initForm() {
     this.form = new FormGroup({
-      brand: new FormControl('' ,{
-        validators: [Validators.required, Validators.pattern(/^([a-zа-яё]+)$/)]
+      brand: new FormControl(`${this.activeCar ? this.activeCar?.brand : ''}` ,{
+        validators: [Validators.required]
       }),
-      model: new FormControl('', Validators.required),
-      year: new FormControl('', {
-        validators: [Validators.required, Validators.pattern(/^(\d+)$/)]
+      model: new FormControl(`${this.activeCar ? this.activeCar?.model : ''}`, Validators.required),
+      year: new FormControl(`${this.activeCar ? this.activeCar?.year : ''}`, {
+        validators: [Validators.required]
       }),
-      color: new FormControl('', {
-        validators: [Validators.required, Validators.pattern(/^([a-zа-яё]+)$/)]
+      color: new FormControl(`${this.activeCar ? this.activeCar?.color : ''}`, {
+        validators: [Validators.required]
       }),
-      amountDoors: new FormControl('', Validators.required),
-      bodyType: new FormControl('', Validators.required),
-      driveType: new FormControl('', Validators.required),
-      transmission: new FormControl('', Validators.required),
-      engineType: new FormControl('', Validators.required),
-      engineCapacity: new FormControl('', Validators.required),
-      condition: new FormControl(''),
-      mileage: new FormControl('', Validators.required),
-      price: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      equipment: new FormControl(''),
+      amountDoors: new FormControl(`${this.activeCar ? this.activeCar?.amountDoors : ''}`, Validators.required),
+      bodyType: new FormControl(`${this.activeCar ? this.activeCar?.model : ''}`, Validators.required),
+      driveType: new FormControl(`${this.activeCar ? this.activeCar?.driveType : ''}`, Validators.required),
+      transmission: new FormControl(`${this.activeCar ? this.activeCar?.transmission : ''}`, Validators.required),
+      engineType: new FormControl(`${this.activeCar ? this.activeCar?.engineType : ''}`, Validators.required),
+      engineCapacity: new FormControl(`${this.activeCar ? this.activeCar?.engineCapacity : ''}`, Validators.required),
+      condition: new FormControl(`${this.activeCar ? this.activeCar?.condition : ''}`),
+      mileage: new FormControl(`${this.activeCar ? this.activeCar?.mileage : ''}`, Validators.required),
+      price: new FormControl(`${this.activeCar ? this.activeCar?.price : ''}`, Validators.required),
+      description: new FormControl(`${this.activeCar ? this.activeCar?.description : ''}`, Validators.required),
+      equipment: new FormControl(`${this.activeCar ? this.activeCar?.equipment : ''}`),
     });
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
 }
