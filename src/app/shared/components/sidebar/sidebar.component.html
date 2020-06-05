@@ -5,37 +5,37 @@
           <h4>{{userEmail}}</h4>
         </div>
         <mat-divider></mat-divider>
-        <a mat-list-item>
+        <a mat-list-item [routerLink]="['/user', 'my-cars']">
           <mat-icon>commute</mat-icon>
           <span>Мои объявления</span>
         </a>
-        <a mat-list-item>
+        <a mat-list-item [routerLink]="['/user', 'bookmarks']">
           <mat-icon>bookmark_border</mat-icon>
           <span>Закладки</span>
         </a>
-        <a mat-list-item>
-          <mat-icon>mail_outline</mat-icon>
-          <span>Сообщения</span>
-        </a>
-        <a mat-list-item>
-          <mat-icon>search</mat-icon>
-          <span>Сохраненные поиски</span>
-        </a>
-        <a mat-list-item>
-          <mat-icon>settings</mat-icon>
-          <span>Настройки</span>
-        </a>
+        <!--<a mat-list-item>-->
+          <!--<mat-icon>mail_outline</mat-icon>-->
+          <!--<span>Сообщения</span>-->
+        <!--</a>-->
+        <!--<a mat-list-item>-->
+          <!--<mat-icon>search</mat-icon>-->
+          <!--<span>Сохраненные поиски</span>-->
+        <!--</a>-->
+        <!--<a mat-list-item>-->
+          <!--<mat-icon>settings</mat-icon>-->
+          <!--<span>Настройки</span>-->
+        <!--</a>-->
         <a mat-list-item (click)="onLogout()">
           <mat-icon>exit_to_app</mat-icon>
           <span>Выйти</span>
         </a>
       </ng-container>
       <h2 matSubheader>Страницы</h2>
-      <a mat-list-item>Транспорт</a>
-      <a mat-list-item>Шины</a>
-      <a mat-list-item>Запчасти</a>
-      <a mat-list-item>Автоновости</a>
-      <a mat-list-item>Знания</a>
+      <a mat-list-item>Автомобили</a>
+      <a mat-list-item>Подать обьявление</a>
+      <a mat-list-item>Отзывы</a>
+      <!--<a mat-list-item>Автоновости</a>-->
+      <!--<a mat-list-item>Знания</a>-->
 
     </mat-nav-list>
 

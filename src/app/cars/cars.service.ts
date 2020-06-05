@@ -21,10 +21,23 @@ export class CarsService {
 
   @loader()
   getCars(headers?: HttpHeaders): Observable<Car[]> {
-     return this.http.get(`${environment.api}/cars.json`, {headers})
+  // getCars(limit?: string, headers?: HttpHeaders): Observable<Car[]> {
+  //   let params = new HttpParams();
+    // const headers = new HttpHeaders({ 'loader': 'true' });
+    // if (limit) {
+      // params = params.set('orderBy', '"title"');
+      // params = params.set('limitToFirst', limit);
+      // params = params.set('loader', 'true');
+    // }
+    // console.log(params);
+
+    return this.http.get(`${environment.api}/cars.json`, {headers})
+    // return this.http.get(`${environment.api}/cars.json`, {headers, params})
       .pipe(
         map((data) => {
           const cars: Car[] = [];
+          // console.log(data);
+          // console.log('это с сервера');
           for (let key in data) {
             cars.push({id: key, ...data[key]});
           }
@@ -47,8 +60,9 @@ export class CarsService {
         })
       );
   }
-  updateCar(id: string, car) {
-    return this.http.put(`${environment.api}/cars/${id}.json`, car);
+  @loader()
+  updateCar(id: string, car, headers?: HttpHeaders) {
+    return this.http.put(`${environment.api}/cars/${id}.json`, car, {headers});
   }
 
   deleteCar(id) {
@@ -68,7 +82,5 @@ export class CarsService {
           }),
       );
   }
-
-
 
 }

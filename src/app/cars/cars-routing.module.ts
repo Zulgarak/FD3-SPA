@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: ':id/edit',
     component: AddFormCarComponent,
     canActivate: [AuthGuard, UserGuard],
-    canDeactivate: [CarFormGuard],
+    // canDeactivate: [CarFormGuard],
     resolve: { cars: CarsResolver }
     },
 ];

@@ -52,34 +52,59 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
         console.log(this.carId);
         this.activeCar = this.carsService.getCar(this.carId);
         this.imgUrl = this.activeCar.img;
+        //test
+        this.path = this.activeCar.path;
       });
     }
     this._initForm();
   }
 
-  deleteFile() {
+  async deleteFile() {
     const storage = this.angularFireStorage.storage;
     const storageRef = storage.ref();
     let imagesRef;
+    // console.log(this.activeCar.img);
+    // console.log(this.imgUrl);
     if (this.activeCar) {
-       imagesRef = storageRef.child(this.activeCar.img);
+      imagesRef = storageRef.child(this.path);
+       await imagesRef.delete().then(() => {
+          console.log('deleted наконец-то!!!!!!!!!!!');
+            }
+          );
+      // imagesRef = storageRef.getMetadata(this.activeCar.img);
+      console.log(this.activeCar.img);
+      console.log(this.imgUrl);
+      console.log('sdhsad');
+      // console.log('path this.activeCar.img');
+      // console.log(this.activeCar.img);
     } else {
        imagesRef = storageRef.child(this.path);
+      // console.log('path this.path');
+      console.log(this.path);
+      //пусть повисит тут может так будет
+      //  await imagesRef.delete().then(() => {
+      //     console.log('deleted');
+      //       }
+      //     );
     }
-    // const imagesRef = storageRef.child(this.path);
-    console.log(imagesRef);
-    imagesRef.delete().then(() => {
-      console.log('deleted');
-        }
-      );
+    //работает отлично
+    //  await imagesRef.delete().then(() => {
+    //     console.log('deleted');
+    //       }
+    //     );
   }
 
-  onFileChange(event) {
+
+   onFileChange(event) {
+    console.log(' before deleted asynk may be');
     if (this.imgUrl) {
-      this.deleteFile();
+       this.deleteFile();
     }
+    console.log('deleted asynk may be');
     const file = event.target.files[0];
-    const filePath = `/cars-images/${file.name}`;
+    //зменение структуры могут быть проблемы
+    const filePath = `/cars-images/${this.user.id}${file.name}`;
+    // const filePath = `/cars-images/${file.name}`;
     const ref = this.angularFireStorage.ref(filePath);
     this.path = filePath;
     const task = ref.put(file);
@@ -99,6 +124,10 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
     this.car.img = this.imgUrl;
     this.car.userId = this.user.id;
     this.car.date = new Date();
+
+    //test
+    this.car.path = this.path;
+
     if (this.activeCar) {
       this.carsService.updateCar(this.activeCar.id, this.car).subscribe((data) => {
         this.router.navigate(['/cars']);

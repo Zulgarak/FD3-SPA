@@ -25,6 +25,8 @@ export interface Car {
   img?: string;
   userId?: string;
   date?: Date;
+  path?: string;
+  inBookmarks?: string[];
 }
 // export interface Car {
 //   brand: string;

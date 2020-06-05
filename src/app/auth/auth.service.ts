@@ -31,7 +31,7 @@ export class AuthService {
       {email, password, returnSecureToken: true}, {headers})
       .pipe(
         tap((data: AuthResponse) => {
-          this._loginHandler(data);
+          this._loginHandler(data, password);
         })
       );
   }
@@ -42,7 +42,8 @@ export class AuthService {
       {email, password, returnSecureToken: true}, {headers})
       .pipe(
         tap((data: AuthResponse) => {
-          this._loginHandler(data);
+          console.log(data);
+          this._loginHandler(data, password);
         })
       );
   }
@@ -58,7 +59,7 @@ export class AuthService {
       email: string,
       id: string,
       _token: string,
-      _expirationDate: string
+      _expirationDate: string,
     };
 
     if (localStorage.getItem('user')) {
@@ -71,7 +72,7 @@ export class AuthService {
       user.email,
       user.id,
       user._token,
-      new Date(user._expirationDate)
+      new Date(user._expirationDate),
     );
 
     if (loadedUser.token) {
@@ -88,9 +89,11 @@ export class AuthService {
     }, duration);
   }
 
-  private _loginHandler(data: AuthResponse) {
+  private _loginHandler(data: AuthResponse, password) {
     const expirationDate: Date = new Date(new Date().getTime() +
       Number(data.expiresIn) * 1000);
+
+
 
     const user: LoginUser = new LoginUser(
       data.email,

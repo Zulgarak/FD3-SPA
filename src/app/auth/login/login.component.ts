@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(form.value.log_email, form.value.log_password)
       .subscribe(
         (data: AuthResponse) => {
-        console.log(data);
+        // console.log(data);
         form.resetForm();
         },
         (error) => {

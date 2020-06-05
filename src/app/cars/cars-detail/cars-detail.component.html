@@ -48,15 +48,22 @@
         </li>
       </ul>
     </div>
-    <ng-container *ngIf="access">
-    <button mat-raised-button
-            color="primary"
-            style="margin-right: 10px"
-            (click)="onEdit()">Редактировать</button>
-    <button mat-raised-button
-            color="warn"
-            (click)="onDelete()">Удалить</button>
-    </ng-container>
+    <div>
+      <ng-container *ngIf="!access">
+        <button  mat-raised-button
+                (click)="onBookmarks()">{{userBookmarks > -1 ? 'Удалить из закладок' : 'В закладки'}}</button>
+      </ng-container>
+
+      <ng-container *ngIf="access">
+      <button mat-raised-button
+              color="primary"
+              style="margin-right: 10px"
+              (click)="onEdit()">Редактировать</button>
+      <button mat-raised-button
+              color="warn"
+              (click)="onDelete()">Удалить</button>
+      </ng-container>
+    </div>
 
   </mat-card-content>
 </mat-card>

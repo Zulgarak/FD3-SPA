@@ -13,6 +13,7 @@ export class CarsResolver implements Resolve<Car[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Car[]> {
-    return this.carsService.getCars();
+    // return this.carsService.getCars( '12');
+    return this.carsService.getCars( );
   }
 }
