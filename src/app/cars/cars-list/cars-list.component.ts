@@ -45,6 +45,7 @@ export class CarsListComponent implements OnInit {
           console.log(data.cars);
         });
       } else {
+        console.log(data);
         this.cars = data.cars;
       }
     });

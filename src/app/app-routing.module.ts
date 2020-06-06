@@ -11,10 +11,16 @@ const routes: Routes = [
       m.CarsModule)
   },
   {
+    path: 'feedbacks',
+    loadChildren: () => import('./feedbacks/feedbacks.module').then(m =>
+      m.FeedbacksModule)
+  },
+  {
     path: 'news',
     loadChildren: () => import('./news/news.module').then(m =>
       m.NewsModule)
   },
+
   // WTF!!!!!!!!!????что делать то
   // позже, переделать логику роутов
   // {path: '**', component: ErrorPageComponent},

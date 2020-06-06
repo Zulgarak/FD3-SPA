@@ -29,12 +29,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
       });
   }
 
-  sideBarToggle(event) {
-    this.sideBarOpen = !this.sideBarOpen;
+  toggleSidebar() {
+    this.toggleSidebarService.sideBarToggle();
   }
 
   onLogout() {
     this.authService.logout();
+    this.toggleSidebarService.sideBarToggle();
   }
 
   ngOnDestroy(): void {

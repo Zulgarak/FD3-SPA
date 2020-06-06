@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Оставьте свой отзыв</h2>
+    <form #feedbackForm="ngForm" (ngSubmit)="submit(feedbackForm)">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Текст объявления</mat-label>
+        <textarea matInput
+                  class="full-width"
+                  ngModel
+                  id="message"
+                  name="message"
+                  #message
+                  maxlength="256"
+                  required
+                  ></textarea>
+
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+      <button mat-raised-button="primary"
+              type="submit"
+      [disabled]="feedbackForm.invalid">Отправить отзыв</button>
+    </form>
+
+  </mat-card-content>
+</mat-card>
+
+

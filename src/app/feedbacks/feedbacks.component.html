@@ -1,0 +1,19 @@
+<mat-card class="container">
+  <mat-card-content>
+    <div class="card-header">
+      <mat-card-title>Отзывы</mat-card-title>
+    </div>
+
+    <div>
+      <!--<app-feedback></app-feedback>-->
+      <app-feedback *ngFor="let item of feedbacks"
+                     [feedback]="item"></app-feedback>
+    </div>
+    <div>
+      <app-feedback-form></app-feedback-form>
+    </div>
+
+
+  </mat-card-content>
+</mat-card>
+

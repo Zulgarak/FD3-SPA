@@ -5,11 +5,11 @@
           <h4>{{userEmail}}</h4>
         </div>
         <mat-divider></mat-divider>
-        <a mat-list-item [routerLink]="['/user', 'my-cars']">
+        <a mat-list-item (click)="toggleSidebar()" [routerLink]="['/user', 'my-cars']">
           <mat-icon>commute</mat-icon>
           <span>Мои объявления</span>
         </a>
-        <a mat-list-item [routerLink]="['/user', 'bookmarks']">
+        <a mat-list-item (click)="toggleSidebar()" [routerLink]="['/user', 'bookmarks']">
           <mat-icon>bookmark_border</mat-icon>
           <span>Закладки</span>
         </a>
@@ -31,9 +31,9 @@
         </a>
       </ng-container>
       <h2 matSubheader>Страницы</h2>
-      <a mat-list-item>Автомобили</a>
-      <a mat-list-item>Подать обьявление</a>
-      <a mat-list-item>Отзывы</a>
+      <a mat-list-item (click)="toggleSidebar()" [routerLink]="['/cars']">Автомобили</a>
+      <a mat-list-item (click)="toggleSidebar()" [routerLink]="['/cars', 'add']">Подать обьявление</a>
+      <a mat-list-item (click)="toggleSidebar()" [routerLink]="['/feedbacks']">Отзывы</a>
       <!--<a mat-list-item>Автоновости</a>-->
       <!--<a mat-list-item>Знания</a>-->
 

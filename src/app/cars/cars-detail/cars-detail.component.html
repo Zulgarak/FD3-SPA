@@ -1,9 +1,11 @@
 <mat-card class="container">
-  <img [src]="car?.img" [alt]="car.brand">
+  <img
+    [src]="car?.img"
+    [alt]="car.brand">
   <mat-card-content>
     <div class="card-header">
       <mat-card-title-group>
-        <mat-card-title>{{car.brand}}</mat-card-title>
+        <mat-card-title>{{car.brand}} {{car.model}}</mat-card-title>
         <mat-card-subtitle>{{car.date | date}}</mat-card-subtitle>
       </mat-card-title-group>
       <h1>{{car.price | currency: 'USD' : 'symbol' : '1.0-0'}}</h1>
@@ -11,44 +13,65 @@
     <div class="row">
       <ul style="margin-bottom: 10px">
         <li>
-          <p>Год выпуска</p>
+          <span>Год выпуска</span>
           <p>{{car.year}}</p>
         </li>
         <li>
-          <p>Объем двигателя</p>
-          <p>{{car.engineCapacity}}</p>
+          <span>Цвет</span>
+          <p>{{car.color}}</p>
         </li>
         <li>
-          <p>Тип двигателя</p>
-          <p>{{car.engineType}}</p>
+          <span>Количество дверей</span>
+          <p>{{car.amountDoors}}</p>
         </li>
         <li>
-          <p>Коробка</p>
-          <p>{{car.transmission}}</p>
+          <span>Тип кузова</span>
+          <p>{{car.bodyType}}</p>
+        </li>
+        <li>
+          <span>Привод</span>
+          <p>{{car.driveType}}</p>
         </li>
       </ul>
     </div>
     <div class="row">
       <ul>
         <li>
-          <p>Пробег (км.)</p>
-          <p>{{car.mileage}}</p>
+          <span>Коробка передач</span>
+          <p>{{car.transmission}}</p>
         </li>
         <li>
-          <p>Тип кузова</p>
+          <span>Комплектация</span>
           <p>{{car.bodyType}}</p>
         </li>
         <li>
-          <p>Тип двигателя</p>
+          <span>Тип двигателя</span>
           <p>{{car.engineType}}</p>
         </li>
         <li>
-          <p>Цвет</p>
-          <p>{{car.color}}</p>
+          <span>Объем двигателя</span>
+          <p>{{car.engineCapacity}}</p>
         </li>
+        <li>
+          <span>Состояние</span>
+          <p>{{car.condition}}</p>
+        </li>
+        <li>
+          <span>Пробег</span>
+          <p>{{car.mileage}}</p>
+        </li>
+        <!--<li>-->
+          <!--<span>Цена</span>-->
+          <!--<p>{{car.price}}</p>-->
+        <!--</li>-->
       </ul>
     </div>
+    <div style="margin-bottom: 20px">
+      <h2>Текст обьявления</h2>
+      {{car.description}}
+    </div>
     <div>
+
       <ng-container *ngIf="!access">
         <button  mat-raised-button
                 (click)="onBookmarks()">{{userBookmarks > -1 ? 'Удалить из закладок' : 'В закладки'}}</button>
