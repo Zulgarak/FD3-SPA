@@ -15,6 +15,8 @@ import { AuthRoutingModule } from './auth/auth-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import {environment} from '../environments/environment';
     // NewsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    AngularFirestoreModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

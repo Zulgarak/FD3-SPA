@@ -27,10 +27,8 @@ export class FeedbackFormComponent implements OnInit {
 
 
   submit(form: NgForm) {
-    const date = new Date();
-    this.feedbacksService.addFeedback({text: form.value.message.trim(), name: this.user.email, date})
-      .subscribe((data: AuthResponse) => {
-          console.log(data);
+    this.feedbacksService.addItem(form.value.message.trim(), this.user.email)
+      .subscribe((data) => {
           form.resetForm();
         },
         (error) => {

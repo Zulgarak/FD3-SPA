@@ -5,6 +5,7 @@ import {FeedbacksComponent} from './feedbacks.component';
 import {FeedbacksResolver} from './feedbacks.resolver';
 
 
+
 const routes: Routes = [
   {path: '',
     component: FeedbacksComponent,

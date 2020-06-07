@@ -6,9 +6,19 @@
 
     <div>
       <!--<app-feedback></app-feedback>-->
-      <app-feedback *ngFor="let item of feedbacks"
+      <app-feedback *ngFor="let item of feedbacksCurrent | async"
                      [feedback]="item"></app-feedback>
+      <h3 *ngIf="!(feedbacksCurrent | async).length">Будьте первым кто оставит отзыв!</h3>
     </div>
+    <!--отдельный компонент сделать-->
+    <mat-paginator [length]="length"
+                   [(pageSize)]="pageSize"
+                   hidePageSize
+                   (page)="pageChange($event)"
+                   showFirstLastButtons>
+    </mat-paginator>
+    <!--<button mat-raised-button="primary" (click)="nextPage()">next</button>-->
+    <!--<button mat-raised-button="primary" style="margin: 10px" (click)="add()">ADD MOCK</button>-->
     <div>
       <app-feedback-form></app-feedback-form>
     </div>

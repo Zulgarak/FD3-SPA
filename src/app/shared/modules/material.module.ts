@@ -13,6 +13,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSelectModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatMenuModule,
@@ -47,6 +50,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSelectModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
 })
 export class MaterialModule { }

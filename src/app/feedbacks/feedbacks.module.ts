@@ -6,6 +6,8 @@ import {FeedbacksComponent} from './feedbacks.component';
 import {FeedbackComponent} from './feedback/feedback.component';
 import {FeedbackFormComponent} from './feedback-form/feedback-form.component';
 import {FeedbacksRoutingModule} from './feedbacks-routing.module';
+import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/database';
+
 
 
 @NgModule({
@@ -14,7 +16,7 @@ import {FeedbacksRoutingModule} from './feedbacks-routing.module';
     FormsModule,
     ReactiveFormsModule,
     FeedbacksRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   declarations: [
     FeedbacksComponent,
