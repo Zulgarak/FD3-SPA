@@ -21,3 +21,33 @@ button {
   display: block;
   margin: 0 auto;
 }
+form {
+  margin: 0 auto;
+  text-align: center;
+}
+mat-form-field {
+  //display: block;
+
+ }
+//mat-form-field:first-child {
+//  width: 30%;
+//  margin-right: 20px;
+//}
+
+mat-form-field {
+  width: 15%;
+  min-width: 180px;
+  @media only screen and (max-width: 650px) {
+    display: block;
+    width: 100%;
+  }
+  &:first-child {
+    width: 30%;
+    margin-right: 20px;
+    @media only screen and (max-width: 650px) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+}

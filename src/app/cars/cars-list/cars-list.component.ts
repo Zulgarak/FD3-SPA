@@ -5,6 +5,10 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
 import {LoginUser} from '../../auth/user';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {debounceTime, filter, map, switchMap} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -14,6 +18,17 @@ import {LoginUser} from '../../auth/user';
 })
 export class CarsListComponent implements OnInit {
 
+  // public formSearch: FormGroup;
+  // searchForm: NgForm;
+  public filterStr: string = '';
+  // public selected = 'brand';
+  public filterField: string = 'brand';
+  // public filterFields = ['brand', 'year'];
+  public filterFields = [
+    {value: 'brand', text: 'Марка авто'},
+    {value: 'year', text: 'Год авто'},
+  ];
+
   cars: Car[];
   subscription: Subscription;
   // limit: string = '6';
@@ -22,12 +37,15 @@ export class CarsListComponent implements OnInit {
   user: LoginUser;
   header: string;
 
+  // seach = new FormControl();
+
 
 
   constructor( private carsService: CarsService,
                private activatedRoute: ActivatedRoute,
                private authService: AuthService,
-               private router: Router) { }
+               private router: Router,
+               private http: HttpClient) { }
 
   ngOnInit(): void {
     this.userSubscription = this.authService.getUser().subscribe((data) => {
@@ -49,37 +67,11 @@ export class CarsListComponent implements OnInit {
          this.cars.length ? this.header = 'my-cars-no-empty' : this.header = 'my-cars-empty';
       } else {
          this.cars = data.cars;
+         this.header = 'all-cars';
       }
     });
   }
-      // console.log(data.cars);
-      // console.log(this.activatedRoute.snapshot.paramMap.get('user'));
-      // this.cars = data.cars;
-    // });
-  // }
-  // nextCars() {
-  //   // console.log(this.carsService.getCars('9'));
-  //   this.carsService.getCars().subscribe( (data) => {
-  //   // this.carsService.getCars('9').subscribe( (data) => {
-  //     console.log(data);
-  //     this.cars = data;
-  //     }
-  //   );
-  //   //должен вызывать гет карс но с лимитом другим
-  //   // работает значит нужно взять текущий стэйс и добавить новый
-  // }
 
-  // showMore() {
-  //   this.productsService.loadMore()
-  //     .subscribe((data: Product[]) => {
-  //       this.products = data;
-  //       this.productsService.products = data;
-  //       if (data.length === this.previousQueryLength) {
-  //         this.isPart = false;
-  //       }
-  //       this.previousQueryLength = data.length;
-  //     });
-  // }
 
   redirectToCars() {
     this.router.navigate(['/cars', 'add']);

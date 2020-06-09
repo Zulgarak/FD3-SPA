@@ -10,6 +10,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorsComponent } from './components/errors/errors.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import {RouterModule} from '@angular/router';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {RouterModule} from '@angular/router';
     ErrorsComponent,
     LoaderComponent,
     ErrorPageComponent,
+    FilterPipe,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import {RouterModule} from '@angular/router';
     ErrorsComponent,
     LoaderComponent,
     ErrorPageComponent,
+    FilterPipe,
   ],
 })
 export class SharedModule { }

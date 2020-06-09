@@ -20,7 +20,7 @@ export class CarsService {
               private http: HttpClient) { }
 
   @loader()
-  getCars(headers?: HttpHeaders): Observable<Car[]> {
+  getCars(headers?: HttpHeaders, value?): Observable<Car[]> {
   // getCars(limit?: string, headers?: HttpHeaders): Observable<Car[]> {
   //   let params = new HttpParams();
     // const headers = new HttpHeaders({ 'loader': 'true' });
@@ -41,7 +41,7 @@ export class CarsService {
           for (let key in data) {
             cars.push({id: key, ...data[key]});
           }
-          this.cars = cars;
+          this.cars = cars.reverse();
           return this.cars;
         })
       );

@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import {Car} from '../shared/models/cars.model';
 import {CarsService} from './cars.service';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -14,6 +15,6 @@ export class CarsResolver implements Resolve<Car[]> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Car[]> {
     // return this.carsService.getCars( '12');
-    return this.carsService.getCars( );
+    return this.carsService.getCars();
   }
 }

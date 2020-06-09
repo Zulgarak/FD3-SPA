@@ -3,13 +3,14 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {logger} from 'codelyzer/util/logger';
 import {Observable, Subscription} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {map} from 'rxjs/operators';
+import {map, startWith} from 'rxjs/operators';
 import {Car} from '../../shared/models/cars.model';
 import {CarsService} from '../cars.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {AuthService} from '../../auth/auth.service';
 import {CanComponentDeactivate} from '../../shared/models/can-component-deactivate.model';
+import * as Options from './add-form-car-options';
 
 
 
@@ -21,15 +22,14 @@ import {CanComponentDeactivate} from '../../shared/models/can-component-deactiva
 export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
   public form: FormGroup;
-  public amountDoors: string[] = ['1', '2', '3', '4', '5'];
-  public bodyType: string[] = ['Внедорожник',
-    'Кабриолет', 'Комби', 'Купе', 'Минивэн',
-    'Пикап' , 'Родстэр', 'Седан', 'Универсал',
-    'Хэтчбек', 'Лимузин', 'Спорт-купе', 'Лифтбек' ];
-  public driveType: string[] = ['Передний', 'Задний', 'Полный'];
-  public transmission: string[] = ['Механика', 'Автомат', 'Полуавтомат'];
-  public engineType: string[] = ['Бензин', 'Дизель', 'Газ/Бензин', 'Гибрид', 'Электро'];
-  public condition: string[] = ['Отличное', 'Хорошее', 'Удовлетворительное', 'Битый', 'Новый'];
+  public brandOptions: string[] = Options.brandOptions;
+  filteredOptions: Observable<string[]>;
+  public amountDoors: string[] = Options.amountDoors;
+  public bodyType: string[] = Options.bodyType;
+  public driveType: string[] = Options.driveType;
+  public transmission: string[] = Options.transmission;
+  public engineType: string[] = Options.engineType;
+  public condition: string[] = Options.condition;
 
 
   public car;
@@ -37,11 +37,13 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
   public userSubscription: Subscription;
   public path: string;
   public imgUrl: AngularFireStorageReference;
+  public isEdit = false;
+  defaultImg;
 
   carSubscription: Subscription;
   carId;
   activeCar;
-  paramMapId;
+  // paramMapId;
 
   constructor(private carsService: CarsService,
               private router: Router,
@@ -51,11 +53,17 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
 
   ngOnInit(): void {
+    this.angularFireStorage.ref('default/default.jpg')
+        .getDownloadURL()
+        .subscribe((data) => {
+          console.log(data);
+          this.defaultImg = data;
+        });
     this.userSubscription = this.authService.getUser().subscribe((data) => {
       this.user = data;
     });
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
-      this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
+      // this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
       this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
         this.carId = paramMap.get('id');
         console.log(this.carId);
@@ -66,9 +74,23 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
       });
     }
     this._initForm();
+    this.filteredOptions = this.form.controls['brand'].valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+    // console.log(this.form.controls['brand']);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.brandOptions.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   async deleteFile() {
+    if (this.car.img === this.defaultImg) {
+      console.log('нельзя удалить дэфолт');
+      return false;
+    }
     const storage = this.angularFireStorage.storage;
     const storageRef = storage.ref();
     let imagesRef;
@@ -80,27 +102,13 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
           console.log('deleted наконец-то!!!!!!!!!!!');
             }
           );
-      // imagesRef = storageRef.getMetadata(this.activeCar.img);
-      console.log(this.activeCar.img);
-      console.log(this.imgUrl);
-      console.log('sdhsad');
-      // console.log('path this.activeCar.img');
       // console.log(this.activeCar.img);
+      // console.log(this.imgUrl);
     } else {
        imagesRef = storageRef.child(this.path);
-      // console.log('path this.path');
-      console.log(this.path);
-      //пусть повисит тут может так будет
-      //  await imagesRef.delete().then(() => {
-      //     console.log('deleted');
-      //       }
-      //     );
+      console.log('непонятный элсе');
     }
-    //работает отлично
-    //  await imagesRef.delete().then(() => {
-    //     console.log('deleted');
-    //       }
-    //     );
+
   }
    onFileChange(event) {
     console.log(' before deleted asynk may be');
@@ -110,8 +118,8 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
     console.log('deleted asynk may be');
     const file = event.target.files[0];
     //зменение структуры могут быть проблемы
-     // можно сделать проще-добавлять только узерид и не понадобиться проверок лишних
-    const filePath = `/cars-images/${this.user.id}${file.name}`;
+    const id = Math.random().toString(36).substr(2, 9);
+     const filePath = `/cars-images/${this.user.id}/${id}${file.name}`;
     // const filePath = `/cars-images/${file.name}`;
     const ref = this.angularFireStorage.ref(filePath);
     this.path = filePath;
@@ -128,7 +136,7 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
   onSubmit() {
     this.car = this.form.value;
-    this.car.img = this.imgUrl;
+    this.car.img = this.imgUrl || this.defaultImg;
     this.car.userId = this.user.id;
     this.car.date = new Date();
 
@@ -137,16 +145,30 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
     if (this.activeCar) {
       this.carsService.updateCar(this.activeCar.id, this.car).subscribe((data) => {
+        this.isEdit = true;
         this.router.navigate(['/cars']);
       });
       return false;
     }
     this.carsService.addCar(this.car).subscribe((data) => {
+      this.isEdit = true;
       this.router.navigate(['/cars']);
     });
   }
 
   canDeactivate() {
+    if (this.isEdit) {
+      if (!this.path && !this.imgUrl) {
+        console.log('Если нет путей, но машина одобавлена');
+        this.car.img = this.defaultImg;
+      }
+      return true;
+    }
+    // const storage = this.angularFireStorage.storage;
+    // const storageRef = storage.ref();
+    // let imagesRef;
+    //   imagesRef = storageRef.child(this.path);
+
     return confirm('Вы действительно хотите покинуть страницу?');
   }
 

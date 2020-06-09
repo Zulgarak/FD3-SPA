@@ -14,6 +14,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -35,7 +36,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-  ],
+    MatAutocompleteModule,
+],
   exports: [
     MatMenuModule,
     MatIconModule,
@@ -50,7 +52,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSelectModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule,
   ],
 })
 export class MaterialModule { }

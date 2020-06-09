@@ -11,9 +11,34 @@
 <ng-container *ngIf="header === 'my-bookmarks-no-empty'">
   <h1>Список объявлений добавленных в закладки</h1>
 </ng-container>
+<ng-container *ngIf="header === 'all-cars'">
+  <!--<form class="form" [formGroup]="formSearch">-->
+  <form class="form" #searchForm="ngForm">
+    <mat-form-field>
+      <mat-label>Поиск по параметрам автомобиля</mat-label>
+      <input matInput
+             [(ngModel)]="filterStr"
+             name="filter"
+             >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Параметр поиска</mat-label>
+      <mat-select [(ngModel)]="filterField"
+                  name="filterField"
+                  >
+        <mat-option *ngFor="let item of filterFields" [value]="item.value">
+          {{item.text}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+  </form>
+</ng-container>
 <div class="wrapper">
-  <app-car-item *ngFor="let item of cars"
+  <app-car-item *ngFor="let item of cars | filter:filterStr:filterField"
                 [car]="item"></app-car-item>
+  <!--<app-car-item *ngFor="let item of cars"-->
+                <!--[car]="item"></app-car-item>-->
 </div>
 
 
