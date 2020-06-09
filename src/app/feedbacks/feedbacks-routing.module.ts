@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
-import {FeedbacksComponent} from './feedbacks.component';
-import {FeedbacksResolver} from './feedbacks.resolver';
-
+import { FeedbacksComponent } from './feedbacks.component';
+import { FeedbacksResolver } from './feedbacks.resolver';
 
 
 const routes: Routes = [

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 import {Feedback} from '../shared/models/feedbacks.model';
 import {FeedbacksService} from './feedbacks.service';
@@ -19,22 +19,15 @@ import {AngularFireDatabase} from '@angular/fire/database';
   templateUrl: './feedbacks.component.html',
   styleUrls: ['./feedbacks.component.scss']
 })
-export class FeedbacksComponent implements OnInit {
-
-
-  // public feedbacks;
-  private feedbacksSUbscription: Subscription;
+export class FeedbacksComponent implements OnInit, OnDestroy {
+  private feedbacksSubscription: Subscription;
+  private userSubscription: Subscription;
   user: LoginUser;
   feedbacksCurrent: Observable<Feedback[]>;
   feedbacks: Observable<Feedback[]>;
-
-  lengthFeedbacks;
   length = 5;
-  prevPageIndex;
-  pageIndex;
   pageSize = 5;
   lowValue = 0;
-
 
 
   constructor(private feedbacksService: FeedbacksService,
@@ -44,20 +37,17 @@ export class FeedbacksComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getUser().subscribe((data) => {
+    this.userSubscription = this.authService.getUser().subscribe((data) => {
       this.user = data;
-      // console.log(this.user);
     });
 
-    this.feedbacksService.feedbacks$.subscribe((item) => {
+    this.feedbacksSubscription = this.feedbacksService.feedbacks$.subscribe((item) => {
       this.length = (item) ? item.length : 0;
       this.feedbacks = of((item) ? item : []);
-      // console.log(this.feedbacks);
       this.feedCurrentChange(this.lowValue);
     });
-
-
   }
+
   pageChange(event): void {
     this.lowValue = event.pageIndex * event.pageSize;
     this.feedCurrentChange(this.lowValue);
@@ -67,16 +57,14 @@ export class FeedbacksComponent implements OnInit {
   feedCurrentChange(low: number, step: number = this.pageSize): void {
     this.feedbacksCurrent = this.feedbacks.pipe(
       map(items => {
-        // console.log(items);
         return items.slice(low , low + step);
       })
     );
   }
 
-
-  // add() {
-  //   this.feedbacksService.addItem();
-  // }
-
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+    this.feedbacksSubscription.unsubscribe();
+  }
 
 }

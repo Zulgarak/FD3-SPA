@@ -13,15 +13,11 @@
                   maxlength="256"
                   required
                   ></textarea>
-
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
       <button mat-raised-button="primary"
               type="submit"
       [disabled]="feedbackForm.invalid">Отправить отзыв</button>
     </form>
-
   </mat-card-content>
 </mat-card>
-
-

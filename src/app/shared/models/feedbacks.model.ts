@@ -1,6 +1,6 @@
 export interface Feedback  {
-  text?: string;
-  name?: string;
-  timestamp?: Date;
+  text: string;
+  name: string;
+  timestamp: Date;
   id?: string;
 }

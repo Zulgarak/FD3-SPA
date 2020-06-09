@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
-import {ErrorPageComponent} from './shared/components/error-page/error-page.component';
-
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -20,10 +18,6 @@ const routes: Routes = [
     loadChildren: () => import('./news/news.module').then(m =>
       m.NewsModule)
   },
-
-  // WTF!!!!!!!!!????что делать то
-  // позже, переделать логику роутов
-  // {path: '**', component: ErrorPageComponent},
 ];
 
 @NgModule({

@@ -15,6 +15,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  isHide() {
+    this.hide = !this.hide;
+    return false;
+  }
+
   submit(form: NgForm) {
     this.authService.login(form.value.log_email, form.value.log_password)
       .subscribe(

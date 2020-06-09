@@ -22,6 +22,15 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
   public form: FormGroup;
   public amountDoors: string[] = ['1', '2', '3', '4', '5'];
+  public bodyType: string[] = ['Внедорожник',
+    'Кабриолет', 'Комби', 'Купе', 'Минивэн',
+    'Пикап' , 'Родстэр', 'Седан', 'Универсал',
+    'Хэтчбек', 'Лимузин', 'Спорт-купе', 'Лифтбек' ];
+  public driveType: string[] = ['Передний', 'Задний', 'Полный'];
+  public transmission: string[] = ['Механика', 'Автомат', 'Полуавтомат'];
+  public engineType: string[] = ['Бензин', 'Дизель', 'Газ/Бензин', 'Гибрид', 'Электро'];
+  public condition: string[] = ['Отличное', 'Хорошее', 'Удовлетворительное', 'Битый', 'Новый'];
+
 
   public car;
   public user;

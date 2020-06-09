@@ -17,6 +17,11 @@ export class RegistrationComponent implements OnInit {
 
   }
 
+  isHide() {
+    this.hide = !this.hide;
+    return false;
+  }
+
   submit(form: NgForm) {
     // console.log(form.value);
     this.authService.signUp(form.value.reg_email, form.value.reg_password)

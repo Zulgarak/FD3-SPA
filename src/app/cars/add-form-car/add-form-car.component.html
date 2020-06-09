@@ -12,12 +12,6 @@
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
-        <!--<p>{{form.controls.brand.status === 'INVALID'}}</p>-->
-        <!--<mat-select>-->
-          <!--<mat-option *ngFor="let car of cars" [value]="car.value">-->
-            <!--{{car.viewValue}}-->
-          <!--</mat-option>-->
-        <!--</mat-select>-->
       </mat-form-field>
 
       <mat-form-field>
@@ -28,26 +22,17 @@
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
-        <!--<mat-select>-->
-          <!--<mat-option *ngFor="let car of cars" [value]="car.value">-->
-            <!--{{car.viewValue}}-->
-          <!--</mat-option>-->
-        <!--</mat-select>-->
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Год выпуска</mat-label>
         <input matInput
+               type="number"
                formControlName="year"
                required>
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
-        <!--<mat-select>-->
-          <!--<mat-option *ngFor="let car of cars" [value]="car.value">-->
-            <!--{{car.viewValue}}-->
-          <!--</mat-option>-->
-        <!--</mat-select>-->
       </mat-form-field>
 
       <mat-form-field>
@@ -71,9 +56,12 @@
 
       <mat-form-field>
         <mat-label>Тип кузова</mat-label>
-        <input matInput
-               formControlName="bodyType"
-               required>
+        <mat-select formControlName="bodyType"
+                    required>
+          <mat-option *ngFor="let item of bodyType" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
@@ -81,9 +69,12 @@
 
       <mat-form-field>
         <mat-label>Привод</mat-label>
-        <input matInput
-               formControlName="driveType"
-               required>
+        <mat-select formControlName="driveType"
+                    required>
+          <mat-option *ngFor="let item of driveType" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
@@ -94,9 +85,12 @@
 
       <mat-form-field>
         <mat-label>Коробка передач</mat-label>
-        <input matInput
-               formControlName="transmission"
-               required>
+        <mat-select formControlName="transmission"
+                    required>
+          <mat-option *ngFor="let item of transmission" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
@@ -110,9 +104,12 @@
 
       <mat-form-field>
         <mat-label>Тип двигателя</mat-label>
-        <input matInput
-               formControlName="engineType"
-               required>
+        <mat-select formControlName="engineType"
+                    required>
+          <mat-option *ngFor="let item of engineType" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
         <mat-error>
           Поле обязательно для заполнения
         </mat-error>
@@ -121,6 +118,7 @@
       <mat-form-field>
         <mat-label>Объем двигателя</mat-label>
         <input matInput
+               type="number"
                formControlName="engineCapacity"
                required>
         <mat-error>
@@ -130,8 +128,12 @@
 
       <mat-form-field>
         <mat-label>Состояние</mat-label>
-        <input matInput
-               formControlName="condition">
+        <mat-select formControlName="condition"
+                    required>
+          <mat-option *ngFor="let item of condition" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field>

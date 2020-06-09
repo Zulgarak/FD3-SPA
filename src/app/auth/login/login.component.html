@@ -12,6 +12,7 @@
                required
                email
                ngModel>
+        <mat-error>Поле обязательно для заполнения</mat-error>
         <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -22,9 +23,10 @@
                name="log_password"
                required
                ngModel>
-        <button mat-icon-button matSuffix (click)="hide = !hide">
+        <button mat-icon-button matSuffix (click)="isHide()">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
+        <mat-error>Поле обязательно для заполнения</mat-error>
       </mat-form-field>
       <button mat-raised-button
               color="primary"

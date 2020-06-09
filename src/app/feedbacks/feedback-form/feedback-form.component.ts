@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AuthResponse} from '../../auth/auth-response';
-import {NgForm} from '@angular/forms';
-import {FeedbacksService} from '../feedbacks.service';
-import {AuthService} from '../../auth/auth.service';
-import {LoginUser} from '../../auth/user';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { FeedbacksService } from '../feedbacks.service';
+import { AuthService } from '../../auth/auth.service';
+import { LoginUser } from '../../auth/user';
 
 
 @Component({
@@ -14,7 +13,6 @@ import {LoginUser} from '../../auth/user';
 export class FeedbackFormComponent implements OnInit {
   public user: LoginUser;
 
-
   constructor(private feedbacksService: FeedbacksService,
               private authService: AuthService) { }
 
@@ -22,9 +20,7 @@ export class FeedbackFormComponent implements OnInit {
     this.authService.getUser().subscribe((data) => {
       this.user = data;
     });
-    console.log(this.user);
   }
-
 
   submit(form: NgForm) {
     this.feedbacksService.addItem(form.value.message.trim(), this.user.email)
@@ -36,7 +32,4 @@ export class FeedbackFormComponent implements OnInit {
         }
       );
   }
-
-
-
 }
