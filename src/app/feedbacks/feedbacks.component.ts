@@ -28,6 +28,10 @@ export class FeedbacksComponent implements OnInit, OnDestroy {
   length = 5;
   pageSize = 5;
   lowValue = 0;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+
+
 
 
   constructor(private feedbacksService: FeedbacksService,

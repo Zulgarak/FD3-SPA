@@ -1,7 +1,7 @@
 :host {
   width: 31%;
   //margin-bottom: 20px;
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1294px) {
     width: 47%;
     }
   @media only screen and (max-width: 845px) {
@@ -12,15 +12,11 @@
 mat-card {
   display: flex;
   flex-direction: column;
-  //flex-wrap: wrap;
-  //max-width: 480px;
   width: 100%;
-  //justify-content: space-between;
-  //align-items: flex-start;
   padding: 20px;
   margin: 0 auto 20px auto;
-  //margin: 30px;
   box-sizing: border-box;
+  cursor: pointer;
 
   &-content {
     //padding: 0 0 0 25px;
@@ -32,27 +28,9 @@ mat-card {
   }
   &:hover {
     box-shadow: 0 6px 12px rgba(0,0,0,0.22), 0 8px 8px rgba(0,0,0,0.22);
-    //& mat-icon {
-    //  color: #bbb;
-    //  &:hover {
-    //    color: coral;
-    //    cursor: pointer;
-    //  }
-    //}
   }
 }
 
-//img {
-//  display: block;
-//  width: 100%;
-//}
-mat-icon {
-  color: #bbb;
-    &:hover {
-      color: coral;
-      cursor: pointer;
-    }
-}
 
 
 .card-header {
@@ -69,6 +47,7 @@ mat-icon {
 ul {
   display: flex;
   justify-content: flex-start;
+  //flex-wrap: wrap;
   padding: 0;
   margin: 0;
   //width: 80%;
@@ -80,7 +59,13 @@ li {
 }
 p {
   margin-bottom: 0;
+  //font-weight: lighter;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-
-
+span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

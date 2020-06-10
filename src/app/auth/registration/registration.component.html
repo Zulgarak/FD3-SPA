@@ -1,40 +1,53 @@
 <mat-card>
   <mat-card-title>Регистрация</mat-card-title>
   <mat-card-content>
-    <form #regForm="ngForm" (ngSubmit)="submit(regForm)">
-      <!--<mat-form-field appearance="outline">-->
-        <!--<mat-label>Введите свое имя</mat-label>-->
-        <!--<input matInput placeholder="ИМЯ" required>-->
-      <!--</mat-form-field>-->
+    <form [formGroup]="form" (ngSubmit)="submit(form)">
       <mat-form-field appearance="outline">
         <mat-label>Введите свой email</mat-label>
         <input matInput
                placeholder="pat@example.com"
-               id="reg_email"
-               name="reg_email"
-               email
-               required
-               ngModel>
-        <mat-error>Поле обязательно для заполнения</mat-error>
+               formControlName="email"
+               >
+        <mat-error *ngIf="form.controls.email.hasError('required')">Поле обязательно для заполнения</mat-error>
+        <mat-error *ngIf="form.controls.email.hasError('email')">Введите правильный email</mat-error>
       </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Введите пароль</mat-label>
-        <input matInput
-               [type]="hide ? 'password' : 'text'"
-               id="reg_password"
-               name="reg_password"
-               required
-               ngModel>
-        <button mat-icon-button matSuffix (click)="isHide()">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error>Поле обязательно для заполнения</mat-error>
-      </mat-form-field>
+      <div formGroupName="passwordGroup">
+        <mat-form-field appearance="outline">
+          <mat-label>Введите пароль</mat-label>
+          <input matInput
+                 [type]="hide ? 'password' : 'text'"
+                 formControlName="reg_password"
+                 >
+          <button mat-icon-button matSuffix (click)="isHide()">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordGroup.controls.reg_password.hasError('required')"
+          >Поле обязательно для заполнения</mat-error>
+          <mat-error *ngIf="passwordGroup.controls.reg_password.hasError('minlength')"
+          >Минимальная длина пароля 7 символов</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Повторите пароль</mat-label>
+          <input matInput
+                 [type]="hideRepeat ? 'password' : 'text'"
+                 formControlName="repeat_reg_password"
+                 >
+          <button mat-icon-button matSuffix (click)="isHideRepeat()">
+            <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordGroup.controls.repeat_reg_password.hasError('required')"
+          >Поле обязательно для заполнения</mat-error>
+          <mat-error *ngIf="passwordGroup.controls.repeat_reg_password.hasError('minlength')"
+          >Минимальная длина пароля 7 символов</mat-error>
+          <mat-error *ngIf="passwordGroup.hasError('passwordEqual')"
+          >Пароли не совпадают</mat-error>
+        </mat-form-field>
+      </div>
       <button mat-raised-button
+              class="submit"
               color="primary"
               type="submit"
-              [disabled]="regForm.invalid">Зарегистрироваться</button>
+              [disabled]="form.invalid">Зарегистрироваться</button>
     </form>
   </mat-card-content>
 </mat-card>

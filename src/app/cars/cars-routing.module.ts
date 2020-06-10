@@ -5,9 +5,9 @@ import { AuthGuard } from '../auth/auth.guard';
 import { CarsDetailComponent } from './cars-detail/cars-detail.component';
 import { AddFormCarComponent } from './add-form-car/add-form-car.component';
 import { CarsResolver } from './cars.resolver';
-import {UserGuard} from '../auth/user.guard';
-import {CarFormGuard} from './car-form.guard';
-import {CarsGuard} from './cars.guard';
+import { UserGuard } from '../auth/user.guard';
+import { CarFormGuard } from './car-form.guard';
+import { CarsGuard } from './cars.guard';
 
 
 
@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: ':id/edit',
     component: AddFormCarComponent,
     canActivate: [AuthGuard, UserGuard],
-    // canDeactivate: [CarFormGuard],
+    canDeactivate: [CarFormGuard],
     resolve: { cars: CarsResolver }
     },
 ];

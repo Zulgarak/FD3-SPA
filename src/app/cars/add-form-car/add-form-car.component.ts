@@ -68,6 +68,7 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
         this.carId = paramMap.get('id');
         console.log(this.carId);
         this.activeCar = this.carsService.getCar(this.carId);
+        console.log(this.activeCar);
         this.imgUrl = this.activeCar.img;
         //test
         this.path = this.activeCar.path;
@@ -78,7 +79,6 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
       startWith(''),
       map(value => this._filter(value))
     );
-    // console.log(this.form.controls['brand']);
   }
 
   private _filter(value: string): string[] {
@@ -87,40 +87,34 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
   }
 
   async deleteFile() {
-    if (this.car.img === this.defaultImg) {
-      console.log('нельзя удалить дэфолт');
+    if (this.activeCar.img === this.defaultImg) {
+      console.log('нет фото');
       return false;
     }
     const storage = this.angularFireStorage.storage;
     const storageRef = storage.ref();
     let imagesRef;
-    // console.log(this.activeCar.img);
-    // console.log(this.imgUrl);
     if (this.activeCar) {
       imagesRef = storageRef.child(this.path);
        await imagesRef.delete().then(() => {
-          console.log('deleted наконец-то!!!!!!!!!!!');
+          // console.log('deleted наконец-то!!!!!!!!!!!');
             }
           );
-      // console.log(this.activeCar.img);
-      // console.log(this.imgUrl);
     } else {
        imagesRef = storageRef.child(this.path);
-      console.log('непонятный элсе');
     }
 
   }
    onFileChange(event) {
-    console.log(' before deleted asynk may be');
+    // console.log(' before deleted asynk may be');
     if (this.imgUrl) {
        this.deleteFile();
     }
-    console.log('deleted asynk may be');
+    // console.log('deleted asynk may be');
     const file = event.target.files[0];
     //зменение структуры могут быть проблемы
     const id = Math.random().toString(36).substr(2, 9);
-     const filePath = `/cars-images/${this.user.id}/${id}${file.name}`;
-    // const filePath = `/cars-images/${file.name}`;
+    const filePath = `/cars-images/${this.user.id}/${id}${file.name}`;
     const ref = this.angularFireStorage.ref(filePath);
     this.path = filePath;
     const task = ref.put(file);
@@ -158,17 +152,8 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
   canDeactivate() {
     if (this.isEdit) {
-      if (!this.path && !this.imgUrl) {
-        console.log('Если нет путей, но машина одобавлена');
-        this.car.img = this.defaultImg;
-      }
       return true;
     }
-    // const storage = this.angularFireStorage.storage;
-    // const storageRef = storage.ref();
-    // let imagesRef;
-    //   imagesRef = storageRef.child(this.path);
-
     return confirm('Вы действительно хотите покинуть страницу?');
   }
 
@@ -200,66 +185,11 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
+    // no test
+    if (this.carSubscription) {
+      this.carSubscription.unsubscribe();
+    }
   }
 
-
-  //буду фиксить проблему
-  // async deleteFile() {
-  //   const storage = this.angularFireStorage.storage;
-  //   const storageRef = storage.ref();
-  //   let imagesRef;
-  //   // console.log(this.activeCar.img);
-  //   // console.log(this.imgUrl);
-  //   if (this.activeCar) {
-  //     imagesRef = storageRef.child(this.path);
-  //     await imagesRef.delete().then(() => {
-  //         console.log('deleted наконец-то!!!!!!!!!!!');
-  //       }
-  //     );
-  //     // imagesRef = storageRef.getMetadata(this.activeCar.img);
-  //     console.log(this.activeCar.img);
-  //     console.log(this.imgUrl);
-  //     console.log('sdhsad');
-  //     // console.log('path this.activeCar.img');
-  //     // console.log(this.activeCar.img);
-  //   } else {
-  //     imagesRef = storageRef.child(this.path);
-  //     // console.log('path this.path');
-  //     console.log(this.path);
-  //     //пусть повисит тут может так будет
-  //     //  await imagesRef.delete().then(() => {
-  //     //     console.log('deleted');
-  //     //       }
-  //     //     );
-  //   }
-  //   //работает отлично
-  //   //  await imagesRef.delete().then(() => {
-  //   //     console.log('deleted');
-  //   //       }
-  //   //     );
-  // }
-  // onFileChange(event) {
-  //   console.log(' before deleted asynk may be');
-  //   if (this.imgUrl) {
-  //     this.deleteFile();
-  //   }
-  //   console.log('deleted asynk may be');
-  //   const file = event.target.files[0];
-  //   //зменение структуры могут быть проблемы
-  //   // можно сделать проще-добавлять только узерид и не понадобиться проверок лишних
-  //   const filePath = `/cars-images/${this.user.id}${file.name}`;
-  //   // const filePath = `/cars-images/${file.name}`;
-  //   const ref = this.angularFireStorage.ref(filePath);
-  //   this.path = filePath;
-  //   const task = ref.put(file);
-  //   task.then((data) => {
-  //     this.angularFireStorage.ref(this.path)
-  //       .getDownloadURL()
-  //       .subscribe((data) => {
-  //         this.imgUrl = data;
-  //         console.log(this.imgUrl);
-  //       });
-  //   });
-  // }
 
 }

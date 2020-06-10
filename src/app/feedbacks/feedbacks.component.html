@@ -8,9 +8,9 @@
                      [feedback]="item"></app-feedback>
       <h3 *ngIf="!(feedbacksCurrent | async).length">Будьте первым кто оставит отзыв!</h3>
     </div>
-    <!--отдельный компонент сделать-->
     <mat-paginator [length]="length"
                    hidePageSize
+                   [(pageSize)]="pageSize"
                    (page)="pageChange($event)"
                    showFirstLastButtons>
     </mat-paginator>

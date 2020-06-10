@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { AuthResponse } from '../auth-response';
+import {CustomValidators} from '../../shared/validators/user-email-validator';
+import {log} from 'util';
 
 @Component({
   selector: 'app-registration',
@@ -9,11 +11,18 @@ import { AuthResponse } from '../auth-response';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  //сделать реактивной +валидатор
+  public form: FormGroup;
+  public passwordGroup: FormGroup;
+
+
   hide = true;
+  hideRepeat = true;
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.initForm();
+    this.passwordGroup = this.form.controls.passwordGroup as FormGroup;
+    // console.log(this.passwordGroup.controls.reg_password);
 
   }
 
@@ -22,16 +31,42 @@ export class RegistrationComponent implements OnInit {
     return false;
   }
 
-  submit(form: NgForm) {
-    // console.log(form.value);
-    this.authService.signUp(form.value.reg_email, form.value.reg_password)
+  isHideRepeat() {
+    this.hideRepeat = !this.hideRepeat;
+    return false;
+  }
+
+
+
+
+  submit(form) {
+    this.authService.signUp(form.value.email, form.value.passwordGroup.reg_password)
       .subscribe(
         (data: AuthResponse) => {
-          form.resetForm();
+          // form.resetForm();
         },
           (error) => {
-          form.resetForm();
+          // form.resetForm();
         }
       );
+  }
+
+  private initForm() {
+    this.form = new FormGroup({
+      email: new FormControl('',
+        {
+          validators: [Validators.required, Validators.email],
+        }),
+      passwordGroup: new FormGroup({
+        reg_password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(7),
+        ]),
+        repeat_reg_password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(7)
+        ])
+      }, CustomValidators.passwordEqual('reg_password', 'repeat_reg_password')),
+    });
   }
 }

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { map, take } from 'rxjs/operators';
 import { LoginUser } from './user';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

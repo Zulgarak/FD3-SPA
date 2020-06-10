@@ -1,6 +1,5 @@
 <mat-card>
   <mat-card-title>Вход</mat-card-title>
-
   <mat-card-content>
     <form #logForm="ngForm" (ngSubmit)="submit(logForm)">
       <mat-form-field appearance="outline">
@@ -11,9 +10,13 @@
                name="log_email"
                required
                email
+               #log_email="ngModel"
                ngModel>
-        <mat-error>Поле обязательно для заполнения</mat-error>
-        <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+        <mat-error *ngIf="log_email.errors?.required"
+        >Поле обязательно для заполнения</mat-error>
+        <mat-error *ngIf="log_email.errors?.email"
+        >Введите правильный email</mat-error>
+
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Введите пароль</mat-label>
@@ -22,11 +25,16 @@
                id="log_password"
                name="log_password"
                required
-               ngModel>
+               minlength="7"
+               ngModel
+               #log_password="ngModel">
         <button mat-icon-button matSuffix (click)="isHide()">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error>Поле обязательно для заполнения</mat-error>
+        <mat-error *ngIf="log_password.errors?.required"
+        >Поле обязательно для заполнения</mat-error>
+        <mat-error *ngIf="log_password.errors?.minlength"
+        >Минимальная длина пароля 7 символов</mat-error>
       </mat-form-field>
       <button mat-raised-button
               color="primary"
@@ -34,11 +42,7 @@
               [disabled]="logForm.invalid"
               >Войти</button>
     </form>
-
-
-
   </mat-card-content>
   <mat-card-footer><a href="#" color="primary" routerLink="/registration">Регистрация</a> для тех, кто первый раз на сайте</mat-card-footer>
-
 </mat-card>
 

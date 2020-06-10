@@ -1,8 +1,7 @@
     <mat-nav-list>
       <ng-container *ngIf="($user | async)">
-        <div class="profile-card">
-          <h2>Олег</h2>
-          <h4>{{userEmail}}</h4>
+        <div class="profile-card" style="padding: 10px 10px 18px 10px">
+          <h2>{{userEmail}}</h2>
         </div>
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleSidebar()" [routerLink]="['/user', 'my-cars']">
