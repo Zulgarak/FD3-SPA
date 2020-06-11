@@ -53,7 +53,7 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
     this.angularFireStorage.ref('default/default.jpg')
         .getDownloadURL()
         .subscribe((data) => {
-          console.log(data);
+          // console.log(data);
           this.defaultImg = data;
         });
     this.userSubscription = this.authService.getUser().subscribe((data) => {
@@ -63,9 +63,9 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
       // this.paramMapId = this.activatedRoute.snapshot.paramMap.get('id');
       this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
         this.carId = paramMap.get('id');
-        console.log(this.carId);
+        // console.log(this.carId);
         this.activeCar = this.carsService.getCar(this.carId);
-        console.log(this.activeCar);
+        // console.log(this.activeCar);
         this.imgUrl = this.activeCar.img;
         //test
         this.path = this.activeCar.path;
@@ -85,7 +85,7 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
 
   async deleteFile() {
     if (this.activeCar.img === this.defaultImg) {
-      console.log('нет фото');
+      // console.log('нет фото');
       return false;
     }
     const storage = this.angularFireStorage.storage;
@@ -187,6 +187,5 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
       this.carSubscription.unsubscribe();
     }
   }
-
 
 }

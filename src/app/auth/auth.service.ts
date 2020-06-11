@@ -42,7 +42,7 @@ export class AuthService {
       {email, password, returnSecureToken: true}, {headers})
       .pipe(
         tap((data: AuthResponse) => {
-          console.log(data);
+          // console.log(data);
           this._loginHandler(data, password);
         })
       );

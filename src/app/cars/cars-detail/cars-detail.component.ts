@@ -67,7 +67,7 @@ export class CarsDetailComponent implements OnInit {
         this.car.inBookmarks.push(this.user.id);
       }
       this.carsService.updateCar(this.carId, this.car).subscribe( (data)=> {
-          console.log(data);
+          // console.log(data);
         this.userBookmarks = this.isUserBookmarks();
         }
       );
