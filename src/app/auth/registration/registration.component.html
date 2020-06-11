@@ -40,7 +40,7 @@
           <mat-error *ngIf="passwordGroup.controls.repeat_reg_password.hasError('minlength')"
           >Минимальная длина пароля 7 символов</mat-error>
         </mat-form-field>
-        <mat-error *ngIf="passwordGroup.controls.repeat_reg_password.touched
+        <mat-error *ngIf="passwordGroup.controls.reg_password.touched
          && passwordGroup.controls.repeat_reg_password.touched && passwordGroup.hasError('passwordEqual')"
         >Пароли не совпадают</mat-error>
       </div>
