@@ -14,7 +14,6 @@ export class RegistrationComponent implements OnInit {
   public form: FormGroup;
   public passwordGroup: FormGroup;
 
-
   hide = true;
   hideRepeat = true;
   constructor(private authService: AuthService) { }
@@ -22,7 +21,6 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.passwordGroup = this.form.controls.passwordGroup as FormGroup;
-    // console.log(this.passwordGroup.controls.reg_password);
 
   }
 
@@ -35,9 +33,6 @@ export class RegistrationComponent implements OnInit {
     this.hideRepeat = !this.hideRepeat;
     return false;
   }
-
-
-
 
   submit(form) {
     this.authService.signUp(form.value.email, form.value.passwordGroup.reg_password)
