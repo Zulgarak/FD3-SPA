@@ -1,18 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {CarsService} from '../cars.service';
-import {Car} from '../../shared/models/cars.model';
-import {Subscription} from 'rxjs';
-import {logger} from 'codelyzer/util/logger';
-import {AuthService} from '../../auth/auth.service';
-import {LoginUser} from '../../auth/user';
-import {map, tap} from 'rxjs/operators';
-import {AuthResponse} from '../../auth/auth-response';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {AngularFireModule, FirebaseApp} from '@angular/fire';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore} from '@angular/fire/firestore';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { CarsService } from '../cars.service';
+import { Car } from '../../shared/models/cars.model';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
+import { LoginUser } from '../../auth/user';
 
 @Component({
   selector: 'app-cars-detail',
@@ -32,10 +24,7 @@ export class CarsDetailComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private authService: AuthService,
-              private http: HttpClient,
-              private firebase: AngularFireAuth,
-
-  ) { }
+             ) { }
 
   ngOnInit(): void {
     this.carSubscription = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -43,7 +32,6 @@ export class CarsDetailComponent implements OnInit {
       this.car = this.carsService.getCar(this.carId);
     });
     this.userSubscription = this.authService.getUser().subscribe((data) => {
-      console.log(data);
       this.user = data;
     });
     this.access = this.getAccess();
@@ -69,31 +57,25 @@ export class CarsDetailComponent implements OnInit {
     if (index > -1) {
       this.car.inBookmarks.splice(index, 1);
       this.carsService.updateCar(this.carId, this.car).subscribe( (data)=> {
-          console.log(data);
           this.userBookmarks = -1;
         }
       );
     } else {
       if (!this.car.inBookmarks) {
-        console.log('нету нигде');
         this.car.inBookmarks = [this.user.id];
       } else {
         this.car.inBookmarks.push(this.user.id);
-        console.log('уже в закладках других');
       }
       this.carsService.updateCar(this.carId, this.car).subscribe( (data)=> {
           console.log(data);
         this.userBookmarks = this.isUserBookmarks();
         }
       );
-      console.log(this.car);
     }
   }
 
   isUserBookmarks() {
     return this.car.inBookmarks?.indexOf(this.user.id);
   }
-
-
 
 }

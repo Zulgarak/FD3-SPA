@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ToggleSidebarService} from '../../services/toggle-sidebar/toggle-sidebar.service';
-import {LoginUser} from '../../../auth/user';
-import {AuthService} from '../../../auth/auth.service';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ToggleSidebarService } from '../../services/toggle-sidebar/toggle-sidebar.service';
+import { LoginUser } from '../../../auth/user';
+import { AuthService } from '../../../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',

@@ -8,16 +8,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './shared/components/errors/error.interceptor';
 import { LoaderInterceptor } from './shared/components/loader/loader.interceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
-// import { CarsModule } from './cars/cars.module';
 import { AuthModule } from './auth/auth.module';
-// import { NewsModule } from './news/news.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
-import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -30,9 +26,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
     SharedModule,
     AppRoutingModule,
     AuthRoutingModule,
-    // CarsModule,
     AuthModule,
-    // NewsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFirestoreModule

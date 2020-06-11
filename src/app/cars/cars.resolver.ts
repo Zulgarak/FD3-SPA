@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import {Car} from '../shared/models/cars.model';
-import {CarsService} from './cars.service';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-
+import { CarsService } from './cars.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +12,6 @@ export class CarsResolver implements Resolve<Car[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Car[]> {
-    // return this.carsService.getCars( '12');
     return this.carsService.getCars();
   }
 }

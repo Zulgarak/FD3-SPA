@@ -9,8 +9,6 @@ import { UserGuard } from '../auth/user.guard';
 import { CarFormGuard } from './car-form.guard';
 import { CarsGuard } from './cars.guard';
 
-
-
 const routes: Routes = [
   {path: '',
     component: CarsComponent,
@@ -21,7 +19,6 @@ const routes: Routes = [
     component: AddFormCarComponent,
     canActivate: [AuthGuard],
     canDeactivate: [CarFormGuard]
-    //не работает
     },
   {path: ':id',
     component: CarsDetailComponent,

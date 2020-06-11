@@ -1,45 +1,29 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CarsService} from '../cars.service';
-import {Car} from '../../shared/models/cars.model';
-import {Subscription} from 'rxjs';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
-import {AuthService} from '../../auth/auth.service';
-import {LoginUser} from '../../auth/user';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {debounceTime, filter, map, switchMap} from 'rxjs/operators';
-import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CarsService } from '../cars.service';
+import { Car } from '../../shared/models/cars.model';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { LoginUser } from '../../auth/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cars-list',
   templateUrl: './cars-list.component.html',
   styleUrls: ['./cars-list.component.scss']
 })
-export class CarsListComponent implements OnInit {
+export class CarsListComponent implements OnInit, OnDestroy {
 
-  // public formSearch: FormGroup;
-  // searchForm: NgForm;
   public filterStr: string = '';
-  // public selected = 'brand';
   public filterField: string = 'brand';
-  // public filterFields = ['brand', 'year'];
   public filterFields = [
     {value: 'brand', text: 'Марка авто'},
     {value: 'year', text: 'Год авто'},
   ];
-
   cars: Car[];
-  subscription: Subscription;
-  // limit: string = '6';
-  // previousLength = this.limit;
   userSubscription: Subscription;
   user: LoginUser;
   header: string;
-
-  // seach = new FormControl();
-
-
 
   constructor( private carsService: CarsService,
                private activatedRoute: ActivatedRoute,
@@ -72,10 +56,12 @@ export class CarsListComponent implements OnInit {
     });
   }
 
-
   redirectToCars() {
     this.router.navigate(['/cars', 'add']);
   }
 
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
 
 }

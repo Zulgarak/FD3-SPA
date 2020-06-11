@@ -1,18 +1,13 @@
-import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
-import {Feedback} from '../shared/models/feedbacks.model';
-import {FeedbacksService} from './feedbacks.service';
-import {ActivatedRoute} from '@angular/router';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {environment} from '../../environments/environment';
-import {map, skip, subscribeOn} from 'rxjs/operators';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {LoginUser} from '../auth/user';
-import {AuthService} from '../auth/auth.service';
-import {AngularFireDatabase} from '@angular/fire/database';
-
-
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
+import { Feedback } from '../shared/models/feedbacks.model';
+import { FeedbacksService } from './feedbacks.service';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { LoginUser } from '../auth/user';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-feedbacks',
@@ -28,11 +23,6 @@ export class FeedbacksComponent implements OnInit, OnDestroy {
   length = 5;
   pageSize = 5;
   lowValue = 0;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-
-
-
-
 
   constructor(private feedbacksService: FeedbacksService,
               private activatedRoute: ActivatedRoute,

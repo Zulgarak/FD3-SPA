@@ -4,7 +4,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BreakpointObserverDirective } from './directives/breakpoint-observer.directive';
-// import { AppRoutingModule } from '../app-routing.module';
 import { MaterialModule } from './modules/material.module';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorsComponent } from './components/errors/errors.component';

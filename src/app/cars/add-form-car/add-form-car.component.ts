@@ -1,15 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {logger} from 'codelyzer/util/logger';
-import {Observable, Subscription} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {map, startWith} from 'rxjs/operators';
-import {Car} from '../../shared/models/cars.model';
-import {CarsService} from '../cars.service';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
-import {AuthService} from '../../auth/auth.service';
-import {CanComponentDeactivate} from '../../shared/models/can-component-deactivate.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { CarsService } from '../cars.service';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
+import { AuthService } from '../../auth/auth.service';
+import { CanComponentDeactivate } from '../../shared/models/can-component-deactivate.model';
 import * as Options from './add-form-car-options';
 
 
@@ -170,16 +167,16 @@ export class AddFormCarComponent implements OnInit, OnDestroy, CanComponentDeact
         validators: [Validators.required]
       }),
       amountDoors: new FormControl(`${this.activeCar ? this.activeCar?.amountDoors : ''}`, Validators.required),
-      bodyType: new FormControl(`${this.activeCar ? this.activeCar?.model : ''}`, Validators.required),
+      bodyType: new FormControl(`${this.activeCar ? this.activeCar?.bodyType : ''}`, Validators.required),
       driveType: new FormControl(`${this.activeCar ? this.activeCar?.driveType : ''}`, Validators.required),
       transmission: new FormControl(`${this.activeCar ? this.activeCar?.transmission : ''}`, Validators.required),
       engineType: new FormControl(`${this.activeCar ? this.activeCar?.engineType : ''}`, Validators.required),
       engineCapacity: new FormControl(`${this.activeCar ? this.activeCar?.engineCapacity : ''}`, Validators.required),
-      condition: new FormControl(`${this.activeCar ? this.activeCar?.condition : ''}`),
+      condition: new FormControl(`${this.activeCar ? this.activeCar?.condition : ''}`, Validators.required),
       mileage: new FormControl(`${this.activeCar ? this.activeCar?.mileage : ''}`, Validators.required),
       price: new FormControl(`${this.activeCar ? this.activeCar?.price : ''}`, Validators.required),
       description: new FormControl(`${this.activeCar ? this.activeCar?.description : ''}`, Validators.required),
-      equipment: new FormControl(`${this.activeCar ? this.activeCar?.equipment : ''}`),
+      equipment: new FormControl(`${this.activeCar ? this.activeCar?.equipment : ''}`, Validators.required),
     });
   }
 

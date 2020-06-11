@@ -12,7 +12,6 @@
   <h1>Список объявлений добавленных в закладки</h1>
 </ng-container>
 <ng-container *ngIf="header === 'all-cars'">
-  <!--<form class="form" [formGroup]="formSearch">-->
   <form class="form" #searchForm="ngForm">
     <mat-form-field>
       <mat-label>Поиск по параметрам автомобиля</mat-label>
@@ -37,10 +36,4 @@
 <div class="wrapper">
   <app-car-item *ngFor="let item of cars | filter:filterStr:filterField"
                 [car]="item"></app-car-item>
-  <!--<app-car-item *ngFor="let item of cars"-->
-                <!--[car]="item"></app-car-item>-->
 </div>
-
-
-<!--<button mat-raised-button="primary" (click)="nextCars()">NEXT</button>-->
-

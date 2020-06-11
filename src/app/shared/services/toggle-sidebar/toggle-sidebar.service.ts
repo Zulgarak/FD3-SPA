@@ -16,5 +16,3 @@ export class ToggleSidebarService {
     this.sideBarOpen = !this.sideBarOpen;
   }
 }
-
-

@@ -1,8 +1,6 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
-import {CarsService} from '../cars/cars.service';
-
-
+import { CarsService } from '../cars/cars.service';
 
 @Injectable({
   providedIn: 'root'

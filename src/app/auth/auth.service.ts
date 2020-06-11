@@ -93,8 +93,6 @@ export class AuthService {
     const expirationDate: Date = new Date(new Date().getTime() +
       Number(data.expiresIn) * 1000);
 
-
-
     const user: LoginUser = new LoginUser(
       data.email,
       data.localId,
@@ -106,7 +104,5 @@ export class AuthService {
     this.autoLogout(Number(data.expiresIn) * 1000);
     this.router.navigate([environment.authRedirectUrl]);
   }
-
-
 
 }

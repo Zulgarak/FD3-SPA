@@ -12,16 +12,6 @@
 
       </div>
       <ul class="header-nav-user" *ngIf="$user | async; else elseBlock">
-        <!--<li>-->
-          <!--<button mat-icon-button>-->
-            <!--<mat-icon>settings</mat-icon>-->
-          <!--</button>-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--<button mat-icon-button>-->
-            <!--<mat-icon>help_outline</mat-icon>-->
-          <!--</button>-->
-        <!--</li>-->
         <li>
           <button mat-button [matMenuTriggerFor]="logout">
             <mat-icon>person_outline</mat-icon>
@@ -36,11 +26,6 @@
       </ul>
       <ng-template #elseBlock>
         <ul class="header-nav-user" >
-          <!--<li>-->
-            <!--<button mat-button [routerLink]="['/cars', 'add']">-->
-              <!--Подать объявление-->
-            <!--</button>-->
-          <!--</li>-->
           <li>
             <button mat-button routerLink="/login" *ngIf="!($user | async)">
               Войти

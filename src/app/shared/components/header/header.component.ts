@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ToggleSidebarService} from '../../services/toggle-sidebar/toggle-sidebar.service';
-import {AuthService} from '../../../auth/auth.service';
-import {LoginUser} from '../../../auth/user';
+import { Component, OnInit } from '@angular/core';
+import { ToggleSidebarService } from '../../services/toggle-sidebar/toggle-sidebar.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -18,11 +17,6 @@ export class HeaderComponent implements OnInit {
 
   toggleSidebar() {
     this.toggleSidebarService.sideBarToggle();
-    // setTimeout(()=> {
-    //   window.dispatchEvent(
-    //     new Event('resize')
-    //   );
-    // }, 300);
   }
 
   onLogout() {

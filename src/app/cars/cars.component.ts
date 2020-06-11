@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Car} from '../shared/models/cars.model';
 
 @Component({
   selector: 'app-cars',

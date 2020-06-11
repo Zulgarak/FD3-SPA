@@ -1,8 +1,7 @@
-import { Observable } from "rxjs";
-import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot } from "@angular/router";
-import { Injectable } from "@angular/core";
-import {CanComponentDeactivate} from '../shared/models/can-component-deactivate.model';
-
+import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanComponentDeactivate } from '../shared/models/can-component-deactivate.model';
 
 @Injectable({
   providedIn: 'root'

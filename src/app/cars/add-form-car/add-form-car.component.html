@@ -44,7 +44,11 @@
       <mat-form-field>
         <mat-label>Цвет</mat-label>
         <input matInput
-               formControlName="color">
+               formControlName="color"
+               required>
+        <mat-error>
+          Поле обязательно для заполнения
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -105,7 +109,11 @@
       <mat-form-field>
         <mat-label>Комплектация</mat-label>
         <input matInput
-               formControlName="equipment">
+               formControlName="equipment"
+               required>
+        <mat-error>
+          Поле обязательно для заполнения
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -181,25 +189,11 @@
     <h2 class="full-width" style="margin: 16px 0">Добавить фотографии</h2>
     <p>Выберите 1 файл</p>
     <input type="file" name="file" #fileInput (change)="onFileChange($event)" />
-
-    <!--<img [src]="activeCar ? activeCar.img : imgUrl" alt="" class="full-width" style="margin: 16px 0">-->
-
-      <img [src]="imgUrl" alt="" class="full-width" style="margin: 16px 0">
-
-
-
+    <img [src]="imgUrl" alt="" class="full-width" style="margin: 16px 0">
     <button mat-raised-button
             color="primary"
             type="submit"
             [disabled]="form.invalid">Опубликовать</button>
-    <!--<button mat-raised-button-->
-            <!--color="primary"-->
-            <!--type="submit"-->
-            <!--&gt;Опубликовать</button>-->
-
 
   </form>
-
-
-
 </mat-card>

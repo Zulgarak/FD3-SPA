@@ -1,8 +1,3 @@
-// ВРЕМЕННО!!!!!!!!!
-// ВРЕМЕННО!!!!!!!!!
-// ВРЕМЕННО!!!!!!!!!
-// ВРЕМЕННО!!!!!!!!!
-// ВРЕМЕННО!!!!!!!!!
 export interface Car {
   id?: string;
   brand?: string;
@@ -28,14 +23,4 @@ export interface Car {
   path?: string;
   inBookmarks?: string[];
 }
-// export interface Car {
-//   brand: string;
-//   year: number;
-//   price: number;
-//   img: string;
-//   model?: string;
-//   description?: string;
-//   images?: string[];
-//   equipment?: string;
-//   id?: string;
-// }
+// необязательные для удобства, временно

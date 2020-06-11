@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Car} from '../shared/models/cars.model';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {Router} from '@angular/router';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {exhaustMap, map, take, tap} from 'rxjs/operators';
-import {environment} from '../../environments/environment';
-import {loader} from '../shared/components/loader/loader.decorator';
-
+import { Car } from '../shared/models/cars.model';
+import { Observable} from 'rxjs';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { loader } from '../shared/components/loader/loader.decorator';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +54,6 @@ export class CarsService {
     return this.http.post(`${environment.api}/cars.json`, car)
       .pipe(
         tap((data: {name: string}) => {
-          console.log(car);
           this.cars.push({id: data.name, ...car});
         })
       );
@@ -70,10 +68,8 @@ export class CarsService {
       .pipe(
         map(
           (data) => {
-            console.log(data);
             let index: number;
             this.cars.forEach((car, carIndex) => {
-              console.log(car);
               if (car.id === id) {
                 index = carIndex;
               }
